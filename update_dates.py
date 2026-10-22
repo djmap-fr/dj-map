@@ -43,17 +43,21 @@ def main():
                   startDateTime=TODAY + "T00:00:00Z")
         time.sleep(0.25)
         for ev in res.get("_embedded", {}).get("events", []):
-            ven = (ev.get("_embedded", {}).get("venues") or [None])[0]
-            d = ev.get("dates", {}).get("start", {}).get("localDate")
-            loc = (ven or {}).get("location") or {}
-            if not (ven and d and loc.get("latitude") and ev.get("url")):
-                continue
-            vid = "tm_" + ven["id"]
-            venues[vid] = {"n": ven["name"], "city": ven.get("city", {}).get("name", ""),
-                           "country": ven.get("country", {}).get("name", ""),
-                           "lat": float(loc["latitude"]), "lon": float(loc["longitude"])}
-            events.append({"dj": name, "venue": vid, "date": d, "ticketUrl": ev["url"]})
-            found[name] = found.get(name, 0) + 1
+            try:
+                ven = (ev.get("_embedded", {}).get("venues") or [None])[0]
+                d = ev.get("dates", {}).get("start", {}).get("localDate")
+                loc = (ven or {}).get("location") or {}
+                nom = (ven or {}).get("name") or ev.get("name")
+                if not (ven and d and nom and loc.get("latitude") and loc.get("longitude") and ev.get("url")):
+                    continue
+                vid = "tm_" + str(ven.get("id", norm(nom)))
+                venues[vid] = {"n": nom, "city": (ven.get("city") or {}).get("name", ""),
+                               "country": (ven.get("country") or {}).get("name", ""),
+                               "lat": float(loc["latitude"]), "lon": float(loc["longitude"])}
+                events.append({"dj": name, "venue": vid, "date": d, "ticketUrl": ev["url"]})
+                found[name] = found.get(name, 0) + 1
+            except Exception:
+                continue   # une date incomplète est ignorée, le reste continue
     # on retire les doublons (même DJ, même jour)
     uniq = {}
     for e in events:
