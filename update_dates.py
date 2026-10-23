@@ -54,7 +54,8 @@ def main():
                 venues[vid] = {"n": nom, "city": (ven.get("city") or {}).get("name", ""),
                                "country": (ven.get("country") or {}).get("name", ""),
                                "lat": float(loc["latitude"]), "lon": float(loc["longitude"])}
-                events.append({"dj": name, "venue": vid, "date": d, "ticketUrl": ev["url"]})
+                events.append({"dj": name, "venue": vid, "date": d, "ticketUrl": ev["url"],
+                               "festival": any(w in (ev.get("name","") + " " + nom).lower() for w in ("festival", " fest", "creamfields", "tomorrowland", "zamna", "time warp", "edc"))})
                 found[name] = found.get(name, 0) + 1
             except Exception:
                 continue   # une date incomplète est ignorée, le reste continue
