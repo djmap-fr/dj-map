@@ -713,6 +713,41 @@
    "country": "Pays-Bas",
    "lat": 52.298,
    "lon": 4.676
+  },
+  "f_nuits": {
+   "n": "Lyon (plusieurs lieux)",
+   "city": "Lyon",
+   "country": "France",
+   "lat": 45.764,
+   "lon": 4.8357
+  },
+  "f_marvel": {
+   "n": "Île sur la Marne (lieu à confirmer)",
+   "city": "Paris",
+   "country": "France",
+   "lat": 48.845,
+   "lon": 2.47
+  },
+  "f_insane": {
+   "n": "Apt",
+   "city": "Apt",
+   "country": "France",
+   "lat": 43.876,
+   "lon": 5.396
+  },
+  "f_kappa": {
+   "n": "Parco Dora",
+   "city": "Turin",
+   "country": "Italie",
+   "lat": 45.09,
+   "lon": 7.67
+  },
+  "f_musicon": {
+   "n": "Amsterdam",
+   "city": "Amsterdam",
+   "country": "Pays-Bas",
+   "lat": 52.3676,
+   "lon": 4.9041
   }
  },
  "events": [
@@ -1594,6 +1629,46 @@
    "date": "2027-08-27",
    "end": "2027-08-29",
    "ticketUrl": "https://www.mysteryland.nl",
+   "festival": true
+  },
+  {
+   "dj": "Nuits Sonores",
+   "venue": "f_nuits",
+   "date": "2027-05-05",
+   "end": "2027-05-09",
+   "ticketUrl": "https://www.nuits-sonores.com",
+   "festival": true
+  },
+  {
+   "dj": "Marvellous Island",
+   "venue": "f_marvel",
+   "date": "2027-05-15",
+   "end": "2027-05-16",
+   "ticketUrl": "https://www.technoairlines.com/festival/marvellous-island-festival-paris-france-2027",
+   "festival": true
+  },
+  {
+   "dj": "Insane Festival",
+   "venue": "f_insane",
+   "date": "2027-05-06",
+   "end": "2027-05-09",
+   "ticketUrl": "https://www.google.com/search?q=Insane%20Festival%20Apt%202027%20billets",
+   "festival": true
+  },
+  {
+   "dj": "Kappa FuturFestival",
+   "venue": "f_kappa",
+   "date": "2027-07-02",
+   "end": "2027-07-04",
+   "ticketUrl": "https://www.kappafuturfestival.it",
+   "festival": true
+  },
+  {
+   "dj": "Music On Festival",
+   "venue": "f_musicon",
+   "date": "2027-05-01",
+   "end": "2027-05-02",
+   "ticketUrl": "https://www.google.com/search?q=Music%20On%20Festival%20Amsterdam%202027%20billets",
    "festival": true
   }
  ]
