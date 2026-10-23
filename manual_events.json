@@ -657,6 +657,62 @@
    "country": "Chili",
    "lat": -33.4489,
    "lon": -70.6693
+  },
+  "f_alpe": {
+   "n": "Alpe d'Huez",
+   "city": "Alpe d'Huez",
+   "country": "France",
+   "lat": 45.092,
+   "lon": 6.07
+  },
+  "f_maimarkt": {
+   "n": "Maimarkthalle",
+   "city": "Mannheim",
+   "country": "Allemagne",
+   "lat": 49.4741,
+   "lon": 8.5236
+  },
+  "f_sonarf": {
+   "n": "Fira Montjuïc / Gran Via",
+   "city": "Barcelone",
+   "country": "Espagne",
+   "lat": 41.3716,
+   "lon": 2.148
+  },
+  "f_defqon": {
+   "n": "Walibi Holland",
+   "city": "Biddinghuizen",
+   "country": "Pays-Bas",
+   "lat": 52.44,
+   "lon": 5.76
+  },
+  "f_awake": {
+   "n": "Site du festival",
+   "city": "Hilvarenbeek",
+   "country": "Pays-Bas",
+   "lat": 51.487,
+   "lon": 5.136
+  },
+  "f_ultraeu": {
+   "n": "Stade Poljud",
+   "city": "Split",
+   "country": "Croatie",
+   "lat": 43.519,
+   "lon": 16.443
+  },
+  "f_cream": {
+   "n": "Daresbury Estate",
+   "city": "Warrington",
+   "country": "Royaume-Uni",
+   "lat": 53.333,
+   "lon": -2.64
+  },
+  "f_mystery": {
+   "n": "Site du festival",
+   "city": "Haarlemmermeer",
+   "country": "Pays-Bas",
+   "lat": 52.298,
+   "lon": 4.676
   }
  },
  "events": [
@@ -1475,6 +1531,70 @@
    "venue": "pier80",
    "date": "2027-01-04",
    "ticketUrl": "https://www.songkick.com/concerts/43446380-rufus-du-sol-at-pier-80"
+  },
+  {
+   "dj": "Tomorrowland Winter",
+   "venue": "f_alpe",
+   "date": "2027-03-20",
+   "end": "2027-03-27",
+   "ticketUrl": "https://www.tomorrowland.com/winter",
+   "festival": true
+  },
+  {
+   "dj": "Time Warp",
+   "venue": "f_maimarkt",
+   "date": "2027-04-03",
+   "end": "2027-04-04",
+   "ticketUrl": "https://time-warp.de",
+   "festival": true
+  },
+  {
+   "dj": "Sónar",
+   "venue": "f_sonarf",
+   "date": "2027-06-17",
+   "end": "2027-06-19",
+   "ticketUrl": "https://sonar.es",
+   "festival": true
+  },
+  {
+   "dj": "Defqon.1",
+   "venue": "f_defqon",
+   "date": "2027-06-24",
+   "end": "2027-06-27",
+   "ticketUrl": "https://www.q-dance.com/en/defqon1",
+   "festival": true
+  },
+  {
+   "dj": "Awakenings",
+   "venue": "f_awake",
+   "date": "2027-07-09",
+   "end": "2027-07-11",
+   "ticketUrl": "https://www.awakenings.com",
+   "festival": true
+  },
+  {
+   "dj": "Ultra Europe",
+   "venue": "f_ultraeu",
+   "date": "2027-07-09",
+   "end": "2027-07-11",
+   "ticketUrl": "https://ultraeurope.com",
+   "festival": true
+  },
+  {
+   "dj": "Creamfields",
+   "venue": "f_cream",
+   "date": "2027-08-26",
+   "end": "2027-08-29",
+   "ticketUrl": "https://www.creamfields.com",
+   "festival": true
+  },
+  {
+   "dj": "Mysteryland",
+   "venue": "f_mystery",
+   "date": "2027-08-27",
+   "end": "2027-08-29",
+   "ticketUrl": "https://www.mysteryland.nl",
+   "festival": true
   }
  ]
 }
