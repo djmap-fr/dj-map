@@ -184,7 +184,7 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 #home h2{margin:0;font:800 clamp(52px,15vw,120px)/.92 var(--f-display);letter-spacing:-.03em}
 #home .hs{max-width:30ch;margin:18px auto 0;font:500 clamp(17px,3.6vw,22px)/1.35 var(--f-body);color:#dfe4ff}
 #home .hn{display:flex;gap:clamp(18px,5vw,48px);justify-content:center;margin:30px 0 8px;flex-wrap:wrap}
-#home .hn b{display:block;font:800 clamp(28px,7vw,44px)/1 var(--f-display)}
+#home .hn b{display:block;font:700 clamp(30px,7.5vw,46px)/1 var(--f-body);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.01em}
 #home .hn span{font:500 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:#9fb4ff}
 #home .go{margin-top:26px;border:0;border-radius:999px;background:#fff;color:#071428;font:700 17px var(--f-body);padding:15px 34px;cursor:pointer;box-shadow:0 8px 30px rgba(120,160,255,.35)}
 #home .go:hover{transform:translateY(-1px)}
@@ -730,7 +730,7 @@ const STACKED = () => matchMedia("(max-width: 979px)").matches;
 
 function loadFavs(){try{return new Set(JSON.parse(localStorage.getItem("djmap.favs")||"[]"));}catch(e){return new Set();}}
 function saveFavs(){try{localStorage.setItem("djmap.favs",JSON.stringify([...state.favs]));}catch(e){}}
-const state = {q:"",genres:new Set(GKEYS),country:"",month:"",view:"dates",limit:40,detail:null,venue:null,favs:loadFavs(),onlyFavs:false,onlyFest:false,sat:false,city:null,km:300};
+const state = {q:"",genres:new Set(GKEYS),country:"",month:"",view:"dates",limit:40,detail:null,venue:null,favs:loadFavs(),onlyFavs:false,onlyFest:false,sat:true,city:null,km:300};
 const CITIES=[["Paris",48.8566,2.3522],["Lyon",45.764,4.8357],["Marseille",43.2965,5.3698],["Bordeaux",44.8378,-0.5792],["Lille",50.6292,3.0573],["Toulouse",43.6047,1.4442],["Nice",43.7102,7.262],["Bruxelles",50.8503,4.3517],["Genève",46.2044,6.1432],["Londres",51.5072,-0.1276],["Amsterdam",52.3676,4.9041],["Berlin",52.52,13.405],["Barcelone",41.3874,2.1686],["Madrid",40.4168,-3.7038],["Milan",45.4642,9.19],["Lisbonne",38.7223,-9.1393],["New York",40.7128,-74.006],["Los Angeles",34.0522,-118.2437],["Miami",25.7617,-80.1918],["Montréal",45.5019,-73.5674],["São Paulo",-23.5505,-46.6333],["Tokyo",35.6762,139.6503]];
 const distKm=(la1,lo1,la2,lo2)=>{const r=Math.PI/180,x=Math.pow(Math.sin((la2-la1)*r/2),2)+Math.cos(la1*r)*Math.cos(la2*r)*Math.pow(Math.sin((lo2-lo1)*r/2),2);return 12742*Math.asin(Math.sqrt(x));};
 
@@ -1059,6 +1059,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&state.detail)closeD
 
 colors();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{colors();render();});
+$("#sat").setAttribute("aria-pressed","true");$(".mapbox").classList.add("sat");loadSat();
 $("#sat").addEventListener("click",()=>{state.sat=!state.sat;if(state.sat)loadSat();$("#sat").setAttribute("aria-pressed",state.sat);$(".mapbox").classList.toggle("sat",state.sat);draw();});
 new MutationObserver(()=>{colors();render();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 function buildCity(){ $("#city").innerHTML='<option value="">Partout dans le monde</option>'+CITIES.map((c,i)=>'<option value="'+i+'">'+esc(c[0])+'</option>').join(""); }
