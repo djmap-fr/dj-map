@@ -174,9 +174,39 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 @media (prefers-reduced-motion:reduce){
   .chip,.pb{transition:none}
 }
+
+/* ===== Page d'accueil ===== */
+#home{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 20px;color:#eeedf8;
+  background:radial-gradient(120% 90% at 50% 0%,#12306a 0%,#071428 60%,#04080f 100%) center/cover no-repeat;overflow:auto;transition:opacity .35s,visibility .35s}
+#home.img{background-image:linear-gradient(rgba(4,8,15,.55),rgba(4,8,15,.9)),var(--hi)}
+#home.off{opacity:0;visibility:hidden;pointer-events:none}
+#home .hk{font:600 12px var(--f-body);letter-spacing:.22em;text-transform:uppercase;color:#9fb4ff;margin:0 0 14px}
+#home h2{margin:0;font:800 clamp(52px,15vw,120px)/.92 var(--f-display);letter-spacing:-.03em}
+#home .hs{max-width:30ch;margin:18px auto 0;font:500 clamp(17px,3.6vw,22px)/1.35 var(--f-body);color:#dfe4ff}
+#home .hn{display:flex;gap:clamp(18px,5vw,48px);justify-content:center;margin:30px 0 8px;flex-wrap:wrap}
+#home .hn b{display:block;font:800 clamp(28px,7vw,44px)/1 var(--f-display)}
+#home .hn span{font:500 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:#9fb4ff}
+#home .go{margin-top:26px;border:0;border-radius:999px;background:#fff;color:#071428;font:700 17px var(--f-body);padding:15px 34px;cursor:pointer;box-shadow:0 8px 30px rgba(120,160,255,.35)}
+#home .go:hover{transform:translateY(-1px)}
+#home ul{list-style:none;margin:30px auto 0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:640px}
+#home li{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);border-radius:999px;padding:8px 14px;font:500 14px var(--f-body);backdrop-filter:blur(4px)}
+#home .hu{margin:18px 0 0;font:500 13px var(--f-body);color:#b9c6ef}
+#home .hc{margin-top:26px;font:400 12px var(--f-body);color:#8fa0c8}
+.top h1{cursor:pointer}
+@media (prefers-reduced-motion:reduce){#home{transition:none}}
 </style>
 
 <div class="page">
+  <div id="home" role="dialog" aria-label="Bienvenue sur DJ Map">
+  <p class="hk">La carte des DJ</p>
+  <h2>DJ Map</h2>
+  <p class="hs">Où jouent les DJ, partout dans le monde.</p>
+  <div class="hn"><div><b id="hn1">–</b><span>dates</span></div><div><b id="hn2">–</b><span>DJ</span></div><div><b id="hn3">–</b><span>lieux</span></div></div>
+  <button class="go" id="homego" type="button">Explorer la carte →</button>
+  <ul><li>🗺 Carte du monde</li><li>📅 Vraies dates, mises à jour chaque jour</li><li>🎪 Festivals</li><li>📍 Autour de moi</li><li>♥ Mes DJ favoris</li><li>🎟 Billets en un clic</li></ul>
+  <p class="hu" id="hupd" hidden></p>
+  <p class="hc">Dates : Ticketmaster et sources officielles · Image : NASA Blue Marble</p>
+</div>
   <header class="top">
     <div>
       <h1>DJ Map</h1>
@@ -368,7 +398,181 @@ const DJS = [
   {n:"Marvellous Island", g:"edm", fest:true, bio:"Festival parisien de musique électronique, sur une île au bord de la Marne. Deux jours de fête, du début d'après-midi jusqu'au petit matin."},
   {n:"Insane Festival", g:"techno", fest:true, bio:"Festival de techno en Provence, à Apt. Plusieurs jours de fête en plein air, dans les paysages du Luberon."},
   {n:"Kappa FuturFestival", g:"techno", fest:true, bio:"Grand festival de techno et de house à Turin, au parc Dora. Trois jours de musique de midi à minuit, dans un décor industriel."},
-  {n:"Music On Festival", g:"techno", fest:true, bio:"Le festival du label Music On, fondé par Marco Carola, à Amsterdam. Des sets techno et tech house longs, pour danser jusqu'au bout."}
+  {n:"Music On Festival", g:"techno", fest:true, bio:"Le festival du label Music On, fondé par Marco Carola, à Amsterdam. Des sets techno et tech house longs, pour danser jusqu'au bout."},
+  // --- ajoutés : DJ connus (afro house / techno / tech house) ---
+  {n:"Da Capo", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Enoo Napa", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Caiiro", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Culoe De Song", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Black Motion", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Zakes Bantwini", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Kabza De Small", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"DJ Maphorisa", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Vigro Deep", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Lazarusman", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Reznik", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Prince Kaybee", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Osunlade", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Joeski", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Sun-El Musician", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Louie Vega", g:"afro", bio:"Légende de la house new-yorkaise (Masters At Work), avec un son chaud, soul et latin."},
+  {n:"Dennis Ferrer", g:"afro", bio:"Producteur et DJ new-yorkais de house soulful, avec un groove très reconnaissable."},
+  {n:"Kerri Chandler", g:"afro", bio:"Pionnier de la house new-yorkaise, connu pour ses sets profonds et soulful."},
+  {n:"DJ Zinhle", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Tale Of Us", g:"afro", bio:"Duo italo-australien du label Afterlife, au son mélodique et sombre. Des shows très visuels."},
+  {n:"Mind Against", g:"afro", bio:"Duo italien de house et techno mélodique, au son profond et cinématographique."},
+  {n:"Stephan Bodzin", g:"afro", bio:"Producteur allemand de techno mélodique, connu pour ses lives aux grands synthés."},
+  {n:"Innellea", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Massano", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Colyn", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Argy", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Adriatique", g:"afro", bio:"Duo suisse de house mélodique, avec des sets élégants et progressifs."},
+  {n:"Hernan Cattaneo", g:"afro", bio:"Maître argentin du progressive house, connu pour ses sets très longs."},
+  {n:"Guy J", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Nick Warren", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Yotto", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Lane 8", g:"afro", bio:"Producteur américain de house mélodique, avec des événements pensés pour une écoute en silence et en lumière."},
+  {n:"Ben Böhmer", g:"afro", bio:"Producteur et DJ allemand de house mélodique, connu pour ses lives pleins d'émotion."},
+  {n:"Fideles", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Mathame", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Tinlicker", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Eli & Fur", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Maya Jane Coles", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Jan Blomqvist", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Kevin de Vries", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Kasablanca", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Dixon", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Monolink", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Cristoph", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Joris Voorn", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Sultan + Shepard", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Eelke Kleijn", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Agents Of Time", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Bob Moses", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Pete Tong", g:"afro", bio:"Voix de la house et du clubbing britannique, présence historique d'Ibiza et de la radio."},
+  {n:"Dubfire", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Dave Seaman", g:"afro", bio:"DJ et producteur de la scène afro house et house mélodique. Un son chaud, des percussions et des mélodies qui donnent envie de danser jusqu'au bout."},
+  {n:"Sasha", g:"afro", bio:"Légende du progressif et des clubs britanniques, connu pour ses sets longs et pleins d'émotion."},
+  {n:"John Digweed", g:"afro", bio:"Figure du progressive house britannique, connu pour ses sets longs et pensés comme un voyage."},
+  {n:"Paul Oakenfold", g:"afro", bio:"Légende britannique de la trance et du clubbing, connu dans le monde entier depuis les années 90."},
+  {n:"Enrico Sangiuliano", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"I Hate Models", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Reinier Zonneveld", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Maceo Plex", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Richie Hawtin", g:"techno", bio:"Légende de la techno minimale, aussi connu sous le nom de Plastikman. Des shows pensés comme de vraies expériences visuelles et sonores."},
+  {n:"Jeff Mills", g:"techno", bio:"Figure de la techno de Détroit, connu pour ses sets très techniques et futuristes."},
+  {n:"Dax J", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Rebekah", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Ellen Allien", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Paula Temple", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Blawan", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Surgeon", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Oscar Mulero", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Len Faki", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Ben Klock", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Marcel Dettmann", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Nastia", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Kobosil", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Héctor Oaks", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Anetha", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Mha Iri", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Paul Kalkbrenner", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Pan-Pot", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Marco Faraone", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Joyhauser", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Ida Engberg", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Cirez D", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Kevin Saunderson", g:"techno", bio:"L'un des trois pionniers de la techno de Détroit. Un set avec lui, c'est un morceau d'histoire de la musique électronique."},
+  {n:"Derrick May", g:"techno", bio:"Pionnier de la techno de Détroit, à l'origine de classiques devenus intemporels. Un set avec lui, c'est un morceau d'histoire."},
+  {n:"Juan Atkins", g:"techno", bio:"Considéré comme l'un des inventeurs de la techno, venu de Détroit. Une référence absolue du genre."},
+  {n:"Robert Hood", g:"techno", bio:"Pionnier de la techno de Détroit et père de la techno minimale. Un son sec, profond et hypnotique."},
+  {n:"Dave Clarke", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Luke Slater", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Speedy J", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Regis", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Planetary Assault Systems", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Rødhåd", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Perc", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Sam Paganini", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Spartaque", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Alignment", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Carl Craig", g:"techno", bio:"Producteur et DJ de Détroit, l'une des grandes figures de la techno. Un son qui mélange rigueur et émotion."},
+  {n:"Reeko", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Ilario Alicante", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Alan Fitzpatrick", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Space 92", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"SHDW & Obscure Shape", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Ben Sims", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Chris Liebing", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Gesaffelstein", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Kas:st", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"999999999", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"VTSS", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Dyen", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"KI/KI", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Clara Cuvé", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Farrago", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Layton Giordani", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Daniel Avery", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Floorplan", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"ANNA", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Joel Mull", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Pig&Dan", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Developer", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Mat.Joe", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Svreca", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Rrose", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Etapp Kyle", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Shlømo", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Weska", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Tiga", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Nicole Moudaber", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Tommy Four Seven", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Jon Hopkins", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Fatima Hajji", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Sama' Abdulhadi", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Lewis Fautzi", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"Ricardo Villalobos", g:"techno", bio:"DJ et producteur de la scène techno. Un set intense, taillé pour les clubs et les grandes salles."},
+  {n:"John Summit", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Biscits", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Max Styler", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Silva Bumpa", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Solardo", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Patrick Topping", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Wade", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Walker & Royce", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Green Velvet", g:"tech", bio:"Légende de la house de Chicago, connu pour ses tubes et ses shows survoltés."},
+  {n:"Nic Fanciulli", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Eats Everything", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Hector Couto", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Westend", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Latmun", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Gaullin", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Lee Foss", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Franky Wah", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Noizu", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Archie Hamilton", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Joshwa", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Piem", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Cuartero", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Cassy", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Armand Van Helden", g:"tech", bio:"Producteur américain de house, auteur de tubes mondiaux, en DJ set très festif."},
+  {n:"Sidney Charles", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Wh0", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Skream", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Mark Knight", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Ben Sterling", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Ownboss", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Tube & Berger", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Fur Coat", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Pirupa", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Matroda", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Rossi.", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Ewan McVicar", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Hot Since 82", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"CamelPhat", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Eli Brown", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
+  {n:"Gorgon City", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
 ];
 const DJ_BY_NAME = new Map(DJS.map(d => [d.n, d]));
 
@@ -861,7 +1065,22 @@ function buildCity(){ $("#city").innerHTML='<option value="">Partout dans le mon
 function focusCity(){ const c=CITIES[state.city], K=0.4*Math.min(W,H)/((state.km/111)*0.0176*s0); flyTo(c[2],c[1],Math.max(1,Math.min(K,KMAX))); }
 $("#city").addEventListener("change",e=>{ state.city=e.target.value===""?null:+e.target.value; $("#radius").disabled=state.city===null; refresh(); if(state.city===null) flyTo(0,15,1); else focusCity(); });
 $("#radius").addEventListener("change",e=>{ state.km=+e.target.value; refresh(); if(state.city!==null) focusCity(); });
-function start(){ buildFilters(); buildCity(); buildPoints(); renderList(); new ResizeObserver(resize).observe(mapEl); resize(); }
+
+/* page d'accueil */
+(function(){const h=$("#home"); let seen=false; try{seen=sessionStorage.getItem("djmap_home")==="1";}catch(e){}
+  const close=()=>{h.classList.add("off");try{sessionStorage.setItem("djmap_home","1");}catch(e){}};
+  const open=()=>{h.classList.remove("off");h.scrollTop=0;};
+  if(seen) h.classList.add("off");
+  $("#homego").addEventListener("click",close);
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!h.classList.contains("off"))close();});
+  const t=document.querySelector(".top h1"); if(t) t.addEventListener("click",open);
+  const im=new Image(); im.onload=()=>{h.style.setProperty("--hi","url(satellite.jpg)");h.classList.add("img");}; im.src="satellite.jpg";
+  window.homeUpd=function(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);if(!m)return;const mois=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+    const e=$("#hupd");e.textContent="Dernière mise à jour : "+(+m[3])+(m[3]==="01"?"er ":" ")+mois[+m[2]-1]+" "+m[1];e.hidden=false;};
+  window.homeStats=function(){const d=EVENTS.length,dj=new Set(EVENTS.filter(e=>!isFest(e)).map(e=>e.dj)).size,v=new Set(EVENTS.map(e=>e.venue)).size;
+    $("#hn1").textContent=d;$("#hn2").textContent=dj;$("#hn3").textContent=v;};
+})();
+function start(){ if(window.homeStats)homeStats(); buildFilters(); buildCity(); buildPoints(); renderList(); new ResizeObserver(resize).observe(mapEl); resize(); }
 /* Si events.json existe à côté de la page (mis à jour chaque jour par le robot), on l'utilise. Sinon on garde les dates intégrées ci-dessus. */
 (function(){
   const today=new Date().toISOString().slice(0,10);
@@ -872,7 +1091,7 @@ function start(){ buildFilters(); buildCity(); buildPoints(); renderList(); new 
         Object.entries(d.venues).forEach(([k,v])=>{VENUES[k]=Object.assign({zk:60},v);});
         EVENTS.length=0; d.events.filter(e=>e.date>=today&&VENUES[e.venue]&&DJ_BY_NAME.has(e.dj)).forEach(e=>EVENTS.push(e));
         EVENTS.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:a.dj.localeCompare(b.dj));
-        const n=document.querySelector(".note"); if(n&&d.updated) n.innerHTML="<strong>Vraies dates</strong>, mises à jour automatiquement (dernière mise à jour : "+d.updated+"). Billets : lien sur chaque date.";
+        if(d.updated&&window.homeUpd)homeUpd(d.updated); const n=document.querySelector(".note"); if(n&&d.updated) n.innerHTML="<strong>Vraies dates</strong>, mises à jour automatiquement (dernière mise à jour : "+d.updated+"). Billets : lien sur chaque date.";
       }
     }catch(e){}
     start();
