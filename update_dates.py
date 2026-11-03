@@ -23,6 +23,57 @@ def get(path, **params):
             time.sleep(2 * (essai + 1))
     return {}
 
+
+COUNTRIES = ["US","CA","GB","IE","FR","DE","ES","AD","PT","IT","NL","BE","CH","AT","SE","NO","DK","FI","PL","CZ","AU","NZ","MX","BR","AE"]
+FEST_WORDS = ("festival", " fest", "creamfields", "tomorrowland", "edc", "ultra", "time warp", "awakenings", "sonar", "sónar", "defqon", "mysteryland", "parookaville", "balaton")
+
+def style_of(ev):
+    """Style du festival d'après les genres Ticketmaster (par défaut : electro / EDM)."""
+    txt = ""
+    for c in ev.get("classifications", []) or []:
+        for k in ("genre", "subGenre"):
+            txt += " " + str((c.get(k) or {}).get("name", "")).lower()
+    if "techno" in txt:
+        return "techno"
+    if "house" in txt:
+        return "tech"
+    return "edm"
+
+def discover_festivals(known_names, venues, events):
+    """Cherche chaque jour les festivals de musique électronique à venir (API Discovery) et les ajoute."""
+    added = 0
+    for cc in COUNTRIES:
+        for page in range(3):
+            res = get("events.json", classificationName="Dance/Electronic", keyword="festival", countryCode=cc,
+                      size=100, page=page, sort="date,asc", startDateTime=TODAY + "T00:00:00Z")
+            time.sleep(0.25)
+            items = res.get("_embedded", {}).get("events", [])
+            for ev in items:
+                try:
+                    name = (ev.get("name") or "").strip()
+                    ven = (ev.get("_embedded", {}).get("venues") or [None])[0]
+                    d = ev.get("dates", {}).get("start", {}).get("localDate")
+                    loc = (ven or {}).get("location") or {}
+                    vname = (ven or {}).get("name") or name
+                    if not (name and ven and d and loc.get("latitude") and loc.get("longitude") and ev.get("url")):
+                        continue
+                    if not any(w in (name + " " + vname).lower() for w in FEST_WORDS):
+                        continue          # on ne garde que de vrais festivals
+                    if name in known_names:
+                        continue          # même nom qu'un DJ connu : on ignore
+                    vid = "tm_" + str(ven.get("id", norm(vname)))
+                    venues[vid] = {"n": vname, "city": (ven.get("city") or {}).get("name", ""),
+                                   "country": (ven.get("country") or {}).get("name", ""),
+                                   "lat": float(loc["latitude"]), "lon": float(loc["longitude"])}
+                    events.append({"dj": name, "venue": vid, "date": d, "ticketUrl": ev["url"],
+                                   "festival": True, "style": style_of(ev)})
+                    added += 1
+                except Exception:
+                    continue
+            if len(items) < 100:
+                break
+    return added
+
 def main():
     if not KEY:
         sys.exit("Il manque la clé : TICKETMASTER_KEY=... python3 update_dates.py")
@@ -59,6 +110,11 @@ def main():
                 found[name] = found.get(name, 0) + 1
             except Exception:
                 continue   # une date incomplète est ignorée, le reste continue
+    try:
+        n_fest = discover_festivals(set(djs), venues, events)
+    except Exception:
+        n_fest = 0
+    print(n_fest, "dates de festivals ajoutées (découverte automatique)")
     # on retire les doublons (même DJ, même jour)
     uniq = {}
     for e in events:

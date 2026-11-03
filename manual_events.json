@@ -748,6 +748,153 @@
    "country": "Pays-Bas",
    "lat": 52.3676,
    "lon": 4.9041
+  },
+  "f_ultramia": {
+   "n": "Bayfront Park",
+   "city": "Miami",
+   "country": "États-Unis",
+   "lat": 25.7745,
+   "lon": -80.186
+  },
+  "f_edclv": {
+   "n": "Las Vegas Motor Speedway",
+   "city": "Las Vegas",
+   "country": "États-Unis",
+   "lat": 36.2724,
+   "lon": -115.0104
+  },
+  "f_tlthai": {
+   "n": "Wisdom Valley",
+   "city": "Pattaya",
+   "country": "Thaïlande",
+   "lat": 12.82,
+   "lon": 101.04
+  },
+  "f_tlbr": {
+   "n": "Parque Maeda",
+   "city": "Itu",
+   "country": "Brésil",
+   "lat": -23.264,
+   "lon": -47.299
+  },
+  "f_zamna": {
+   "n": "Zamna Tulum",
+   "city": "Tulum",
+   "country": "Mexique",
+   "lat": 20.2114,
+   "lon": -87.4654
+  },
+  "f_pkv": {
+   "n": "Flughafen Weeze",
+   "city": "Weeze",
+   "country": "Allemagne",
+   "lat": 51.6021,
+   "lon": 6.1423
+  },
+  "f_untold": {
+   "n": "Cluj Arena",
+   "city": "Cluj-Napoca",
+   "country": "Roumanie",
+   "lat": 46.7667,
+   "lon": 23.5727
+  },
+  "f_upclose": {
+   "n": "Spaarnwoude",
+   "city": "Spaarnwoude",
+   "country": "Pays-Bas",
+   "lat": 52.409,
+   "lon": 4.704
+  },
+  "f_extrema": {
+   "n": "Extrema Outdoor",
+   "city": "Houthalen-Helchteren",
+   "country": "Belgique",
+   "lat": 51.03,
+   "lon": 5.38
+  },
+  "f_bonair": {
+   "n": "Marseille",
+   "city": "Marseille",
+   "country": "France",
+   "lat": 43.2965,
+   "lon": 5.3698
+  },
+  "f_movement": {
+   "n": "Hart Plaza",
+   "city": "Détroit",
+   "country": "États-Unis",
+   "lat": 42.3277,
+   "lon": -83.0467
+  },
+  "f_ubbi": {
+   "n": "Fort Worth",
+   "city": "Fort Worth",
+   "country": "États-Unis",
+   "lat": 32.7555,
+   "lon": -97.3308
+  },
+  "f_ikarus": {
+   "n": "Flughafen Memmingen",
+   "city": "Memmingerberg",
+   "country": "Allemagne",
+   "lat": 47.9888,
+   "lon": 10.2395
+  },
+  "f_snowb": {
+   "n": "Mayrhofen",
+   "city": "Mayrhofen",
+   "country": "Autriche",
+   "lat": 47.16,
+   "lon": 11.86
+  },
+  "f_sunburn": {
+   "n": "Mumbai",
+   "city": "Mumbai",
+   "country": "Inde",
+   "lat": 19.076,
+   "lon": 72.8777
+  },
+  "f_ultramx": {
+   "n": "Estadio Banorte",
+   "city": "Mexico",
+   "country": "Mexique",
+   "lat": 19.3029,
+   "lon": -99.1505
+  },
+  "f_ade": {
+   "n": "Amsterdam (plusieurs lieux)",
+   "city": "Amsterdam",
+   "country": "Pays-Bas",
+   "lat": 52.3676,
+   "lon": 4.9041
+  },
+  "f_nosleep": {
+   "n": "Belgrade (plusieurs lieux)",
+   "city": "Belgrade",
+   "country": "Serbie",
+   "lat": 44.8125,
+   "lon": 20.4612
+  },
+  "f_dgtl": {
+   "n": "NDSM",
+   "city": "Amsterdam",
+   "country": "Pays-Bas",
+   "lat": 52.401,
+   "lon": 4.892
+  },
+  "f_lumin": {
+   "n": "Zandvoort",
+   "city": "Zandvoort",
+   "country": "Pays-Bas",
+   "lat": 52.375,
+   "lon": 4.53
+  },
+  "f_hibern": {
+   "n": "Pas de la Casa (Grandvalira)",
+   "city": "Pas de la Casa",
+   "country": "Andorre",
+   "lat": 42.5426,
+   "lon": 1.7336
   }
  },
  "events": [
@@ -854,6 +1001,209 @@
    "end": "2027-05-02",
    "ticketUrl": "https://www.google.com/search?q=Music%20On%20Festival%20Amsterdam%202027%20billets",
    "festival": true
+  },
+  {
+   "dj": "Ultra Music Festival",
+   "venue": "f_ultramia",
+   "date": "2027-03-26",
+   "end": "2027-03-28",
+   "ticketUrl": "https://ultramusicfestival.com/tickets/miami/",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "EDC Las Vegas",
+   "venue": "f_edclv",
+   "date": "2027-05-14",
+   "end": "2027-05-16",
+   "ticketUrl": "https://lasvegas.electricdaisycarnival.com",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "EDC Las Vegas",
+   "venue": "f_edclv",
+   "date": "2027-05-21",
+   "end": "2027-05-23",
+   "ticketUrl": "https://lasvegas.electricdaisycarnival.com",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Tomorrowland Thailand",
+   "venue": "f_tlthai",
+   "date": "2026-12-11",
+   "end": "2026-12-13",
+   "ticketUrl": "https://www.tomorrowland.com",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Tomorrowland Brasil",
+   "venue": "f_tlbr",
+   "date": "2027-04-30",
+   "end": "2027-05-02",
+   "ticketUrl": "https://www.tomorrowland.com",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Zamna Tulum",
+   "venue": "f_zamna",
+   "date": "2026-12-31",
+   "end": "2027-01-10",
+   "ticketUrl": "https://www.zamnafestival.com",
+   "festival": true,
+   "style": "tech"
+  },
+  {
+   "dj": "Parookaville",
+   "venue": "f_pkv",
+   "date": "2027-07-16",
+   "end": "2027-07-18",
+   "ticketUrl": "https://www.google.com/search?q=Parookaville%202027%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Untold",
+   "venue": "f_untold",
+   "date": "2027-08-05",
+   "end": "2027-08-08",
+   "ticketUrl": "https://www.google.com/search?q=Untold%20Festival%202027%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Awakenings Upclose",
+   "venue": "f_upclose",
+   "date": "2027-05-15",
+   "end": "2027-05-16",
+   "ticketUrl": "https://www.awakenings.com",
+   "festival": true,
+   "style": "techno"
+  },
+  {
+   "dj": "Extrema Outdoor",
+   "venue": "f_extrema",
+   "date": "2027-05-14",
+   "end": "2027-05-16",
+   "ticketUrl": "https://www.google.com/search?q=Extrema%20Outdoor%20Belgium%202027%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Festival Le Bon Air",
+   "venue": "f_bonair",
+   "date": "2027-05-14",
+   "end": "2027-05-16",
+   "ticketUrl": "https://www.google.com/search?q=Festival%20Le%20Bon%20Air%20Marseille%202027%20billets",
+   "festival": true,
+   "style": "techno"
+  },
+  {
+   "dj": "Movement Detroit",
+   "venue": "f_movement",
+   "date": "2027-05-29",
+   "end": "2027-05-31",
+   "ticketUrl": "https://movementfestival.com",
+   "festival": true,
+   "style": "techno"
+  },
+  {
+   "dj": "Ubbi Dubbi",
+   "venue": "f_ubbi",
+   "date": "2027-04-23",
+   "end": "2027-04-24",
+   "ticketUrl": "https://www.google.com/search?q=Ubbi%20Dubbi%202027%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Ikarus Festival",
+   "venue": "f_ikarus",
+   "date": "2027-06-25",
+   "end": "2027-06-27",
+   "ticketUrl": "https://www.google.com/search?q=Ikarus%20Festival%202027%20Memmingen%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Snowbombing",
+   "venue": "f_snowb",
+   "date": "2027-04-05",
+   "end": "2027-04-10",
+   "ticketUrl": "https://www.google.com/search?q=Snowbombing%202027%20Mayrhofen%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Sunburn Festival",
+   "venue": "f_sunburn",
+   "date": "2026-12-18",
+   "end": "2026-12-20",
+   "ticketUrl": "https://sunburn.in",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Ultra Mexico",
+   "venue": "f_ultramx",
+   "date": "2026-11-07",
+   "end": "2026-11-08",
+   "ticketUrl": "https://www.google.com/search?q=Ultra%20Mexico%202026%20Estadio%20Banorte%20boletos",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Amsterdam Dance Event",
+   "venue": "f_ade",
+   "date": "2027-10-20",
+   "end": "2027-10-24",
+   "ticketUrl": "https://www.amsterdam-dance-event.nl",
+   "festival": true,
+   "style": "tech"
+  },
+  {
+   "dj": "No Sleep Festival",
+   "venue": "f_nosleep",
+   "date": "2026-11-28",
+   "ticketUrl": "https://www.exitfest.org/en",
+   "festival": true,
+   "style": "techno"
+  },
+  {
+   "dj": "DGTL Amsterdam",
+   "venue": "f_dgtl",
+   "date": "2027-03-26",
+   "end": "2027-03-28",
+   "ticketUrl": "https://www.google.com/search?q=DGTL%20Festival%20Amsterdam%202027%20tickets",
+   "festival": true,
+   "style": "techno"
+  },
+  {
+   "dj": "Luminosity Beach Festival",
+   "venue": "f_lumin",
+   "date": "2027-06-24",
+   "end": "2027-06-27",
+   "ticketUrl": "https://www.google.com/search?q=Luminosity%20Beach%20Festival%202027%20tickets",
+   "festival": true,
+   "style": "edm"
+  },
+  {
+   "dj": "Max Dean",
+   "venue": "fiveluxe",
+   "date": "2026-12-11",
+   "ticketUrl": "https://www.ticketmaster.ae/event/luke-dean-b2b-max-dean--pacha-icons-tickets/1877550820"
+  },
+  {
+   "dj": "Hibernation Festival",
+   "venue": "f_hibern",
+   "date": "2027-03-19",
+   "end": "2027-03-21",
+   "ticketUrl": "https://www.google.com/search?q=Hibernation%20Festival%202027%20Andorre%20billets",
+   "festival": true,
+   "style": "techno"
   }
  ]
 }
