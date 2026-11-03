@@ -946,7 +946,8 @@ const FESTCHIP='<button type="button" class="chip fest" id="festbtn" aria-presse
 const FAVCHIP='<button type="button" class="chip fav" id="favbtn" aria-pressed="false">'+HEART+t("favs")+' <b>'+state.favs.size+'</b></button>';
 const heart=n=>`<button type="button" class="heart" data-fav="${esc(n)}" aria-pressed="${state.favs.has(n)}" aria-label="${esc(t('fav_a',{n:n}))}">${HEART}</button>`;
 // Lien direct pour les dates Ticketmaster ; sinon le bouton billets ouvre une recherche (DJ, lieu, ville, année) plutôt qu'un lien direct vers une billetterie.
-const ticketUrl=e=>(/^tm_/.test(e.venue)&&/^https:\/\//.test(e.ticketUrl||""))||/^https?:\/\/([a-z0-9-]+\.)*(ticketmaster|livenation)\.[a-z]{2,3}(\.[a-z]{2})?\//i.test(e.ticketUrl||"")?e.ticketUrl:"https://www.google.com/search?q="+encodeURIComponent([e.dj,VENUES[e.venue].n,VENUES[e.venue].city,e.date.slice(0,4),t("tix")].join(" "));
+const TMRX=/^https:\/\/([a-z0-9-]+\.)*(ticketmaster|livenation|ticketweb|frontgatetickets|fgtix|universe|moshtix)\.[a-z]{2,3}(\.[a-z]{2})?\//i;
+const ticketUrl=e=>TMRX.test(e.ticketUrl||"")?e.ticketUrl:"https://www.google.com/search?q="+encodeURIComponent([e.dj,VENUES[e.venue].n,VENUES[e.venue].city,e.date.slice(0,4),t("tix")].join(" "));
 const tix=e=>`<a class="tix" href="${esc(ticketUrl(e))}" target="_blank" rel="noopener" title="${esc(t('tix_t'))}">${t('tix')} ↗</a>`;
 function syncHearts(){
   document.querySelectorAll(".heart").forEach(b=>b.setAttribute("aria-pressed",state.favs.has(b.dataset.fav)?"true":"false"));
