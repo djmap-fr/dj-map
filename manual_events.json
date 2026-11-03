@@ -895,6 +895,20 @@
    "country": "Andorre",
    "lat": 42.5426,
    "lon": 1.7336
+  },
+  "f_fcknye": {
+   "n": "Brussels Expo",
+   "city": "Bruxelles",
+   "country": "Belgique",
+   "lat": 50.895,
+   "lon": 4.3414
+  },
+  "f_fabrik": {
+   "n": "Fabrik",
+   "city": "Humanes de Madrid",
+   "country": "Espagne",
+   "lat": 40.2425,
+   "lon": -3.833
   }
  },
  "events": [
@@ -1204,6 +1218,36 @@
    "ticketUrl": "https://www.google.com/search?q=Hibernation%20Festival%202027%20Andorre%20billets",
    "festival": true,
    "style": "techno"
+  },
+  {
+   "dj": "FCKNYE Festival",
+   "venue": "f_fcknye",
+   "date": "2026-12-30",
+   "end": "2027-01-01",
+   "ticketUrl": "https://www.google.com/search?q=FCKNYE%20Festival%202026%20Brussels%20Expo%20tickets",
+   "festival": true,
+   "style": "techno"
+  },
+  {
+   "dj": "LOOP NYD Festival",
+   "venue": "f_fabrik",
+   "date": "2027-01-01",
+   "end": "2027-01-02",
+   "ticketUrl": "https://www.google.com/search?q=LOOP%20NYD%20Festival%202027%20Fabrik%20Madrid%20entradas",
+   "festival": true,
+   "style": "tech"
+  },
+  {
+   "dj": "Paco Osuna",
+   "venue": "f_fabrik",
+   "date": "2027-01-01",
+   "ticketUrl": "https://www.google.com/search?q=LOOP%20NYD%20Festival%202027%20Fabrik%20Madrid%20entradas"
+  },
+  {
+   "dj": "Marco Carola",
+   "venue": "f_fabrik",
+   "date": "2027-01-01",
+   "ticketUrl": "https://www.google.com/search?q=LOOP%20NYD%20Festival%202027%20Fabrik%20Madrid%20entradas"
   }
  ]
 }

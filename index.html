@@ -360,6 +360,7 @@ const DJS = [
   {n:"Robin Schulz", g:"tech", bio:"DJ allemand, numéro un en Europe avec son remix de « Waves ». Une house douce, mélodique et lumineuse."},
   {n:"Kungs", g:"tech", bio:"DJ français de Toulon, révélé par « This Girl ». Une house pop qui fait chanter les festivals."},
   {n:"Mason Collective", g:"tech", bio:"Un nom de la scène house à découvrir, entre groove profond et énergie de club."},
+  {n:"De La Swing", g:"tech", bio:"DJ et producteur de tech house. Des basses qui claquent et un groove fait pour faire danser toute la nuit."},
   {n:"Âme", g:"tech", bio:"Duo allemand de Berlin, Kristian Beyer et Frank Wiedemann. Une house mélancolique et poétique, dont « Rej » est devenu un classique."},
   {n:"Chloé Caillet", g:"tech", bio:"DJ et productrice française. Une house qui groove et qui vibre, des sets pleins de rythme et de lumière."},
 
@@ -1281,6 +1282,7 @@ function start(){ if(window.homeStats)homeStats(); buildFilters(); buildCity(); 
       if(d&&Array.isArray(d.events)&&d.events.length){
         Object.keys(VENUES).forEach(k=>delete VENUES[k]);
         Object.entries(d.venues).forEach(([k,v])=>{VENUES[k]=Object.assign({zk:60},v);});
+        d.events.forEach(e=>{ if(e.festival===true&&e.dj&&!DJ_BY_NAME.has(e.dj)){ const g=GENRES[e.style]?e.style:"edm", nd={n:e.dj,g:g,fest:true,bio:GENFR[g]}; DJS.push(nd); DJ_BY_NAME.set(nd.n,nd); } });
         EVENTS.length=0; d.events.filter(e=>e.date>=today&&VENUES[e.venue]&&DJ_BY_NAME.has(e.dj)).forEach(e=>EVENTS.push(e));
         EVENTS.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:a.dj.localeCompare(b.dj));
         if(d.updated&&window.homeUpd)homeUpd(d.updated); const n=document.querySelector(".note"); if(n&&d.updated) n.innerHTML=t("note1",{d:fmtLong(d.updated)});
