@@ -909,6 +909,13 @@
    "country": "Espagne",
    "lat": 40.2425,
    "lon": -3.833
+  },
+  "f_circuitbcn": {
+   "n": "Circuit de Barcelona-Catalunya",
+   "city": "Montmeló (Barcelone)",
+   "country": "Espagne",
+   "lat": 41.57,
+   "lon": 2.2611
   }
  },
  "events": [
@@ -1248,6 +1255,14 @@
    "venue": "f_fabrik",
    "date": "2027-01-01",
    "ticketUrl": "https://www.google.com/search?q=LOOP%20NYD%20Festival%202027%20Fabrik%20Madrid%20entradas"
+  },
+  {
+   "dj": "elrow Unreal New Year's Day Rave",
+   "venue": "f_circuitbcn",
+   "date": "2027-01-01",
+   "ticketUrl": "https://www.google.com/search?q=elrow%20Unreal%20New%20Years%20Day%20Rave%202027%20Barcelona%20Circuit%20tickets",
+   "festival": true,
+   "style": "tech"
   }
  ]
 }
