@@ -151,6 +151,7 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 .me i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:var(--fg);box-shadow:0 0 0 3px var(--ocean),0 0 0 4.5px var(--fg)}
 .me span{position:absolute;left:0;transform:translateX(-50%);white-space:nowrap;font:600 11px var(--f-body);text-shadow:0 0 3px var(--ocean),0 0 3px var(--ocean),0 0 6px var(--ocean)}
 .selects+.selects{margin-top:0}
+.selects label.wide{grid-column:1/-1}
 .more{margin:10px 0 0;padding:9px 18px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-weight:500;font-size:13.5px}
 .more:hover{background:var(--panel2)}
 .empty{padding:22px 0;color:var(--muted)}
@@ -257,6 +258,7 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
       <input id="q" class="search" type="search" data-i18n-ph="search" autocomplete="off" data-i18n-aria="search">
       <div id="genres" class="chips" role="group" data-i18n-aria="a_style"></div>
       <div class="selects">
+        <label for="cont" class="wide"><span data-i18n="cont"></span><select id="cont"></select></label>
         <label for="country"><span data-i18n="country"></span><select id="country"></select></label>
         <label for="month"><span data-i18n="month"></span><select id="month"></select></label>
       </div>
@@ -772,7 +774,7 @@ fr:{hk:"La carte des DJ",hs:"Où jouent les DJ, partout dans le monde.",u_dates:
  note0:"<strong>Vraies dates</strong>. Billets : lien sur chaque date. Certains DJ n'ont pas encore de date annoncée.",
  note1:"<strong>Vraies dates</strong>, mises à jour automatiquement (dernière mise à jour : {d}). Billets : lien sur chaque date.",
  search:"Chercher un DJ, un club, une ville",a_filters:"Filtres",a_style:"Style de musique",country:"Pays",month:"Mois",around:"Autour de",radius:"Rayon",
- all_countries:"Tous les pays",all_dates:"Toutes les dates",everywhere:"Partout dans le monde",
+ cont:"Continent", all_countries:"Tous les pays", c_all:"Tous les continents",c_eu:"Europe",c_na:"Amérique du Nord",c_sa:"Amérique du Sud",c_as:"Asie",c_af:"Afrique",c_oc:"Océanie",all_dates:"Toutes les dates",everywhere:"Partout dans le monde",
  p_world:"Monde",p_europe:"Europe",p_dubai:"Dubaï",p_americas:"Amériques",a_goto:"Aller à",a_zin:"Zoom avant",a_zout:"Zoom arrière",sat_view:"Vue satellite",a_results:"Résultats",a_view:"Affichage",
  v_dates:"Dates",favs:"Mes DJ",tix:"Billets",tix_t:"Page de l'événement avec les billets",more_dates:"Afficher plus de dates",more_djs:"Afficher plus de DJ",
  empty_fav:"Aucun favori pour l'instant. Touche le cœur d'un DJ pour l'ajouter ici.",empty_none:"Aucun résultat. Essaie d'enlever un filtre.",empty_venue:"Aucune date avec ces filtres.",
@@ -784,7 +786,7 @@ en:{hk:"The DJ map",hs:"Where DJs play, all around the world.",u_dates:"dates",u
  note0:"<strong>Real dates</strong>. Tickets: link on each date. Some DJs have no announced date yet.",
  note1:"<strong>Real dates</strong>, updated automatically (last update: {d}). Tickets: link on each date.",
  search:"Search a DJ, a club, a city",a_filters:"Filters",a_style:"Music style",country:"Country",month:"Month",around:"Around",radius:"Radius",
- all_countries:"All countries",all_dates:"All dates",everywhere:"Anywhere in the world",
+ cont:"Continent", all_countries:"All countries", c_all:"All continents",c_eu:"Europe",c_na:"North America",c_sa:"South America",c_as:"Asia",c_af:"Africa",c_oc:"Oceania",all_dates:"All dates",everywhere:"Anywhere in the world",
  p_world:"World",p_europe:"Europe",p_dubai:"Dubai",p_americas:"Americas",a_goto:"Go to",a_zin:"Zoom in",a_zout:"Zoom out",sat_view:"Satellite view",a_results:"Results",a_view:"Display",
  v_dates:"Dates",favs:"My DJs",tix:"Tickets",tix_t:"Event page with tickets",more_dates:"Show more dates",more_djs:"Show more DJs",
  empty_fav:"No favourites yet. Tap a DJ's heart to add them here.",empty_none:"No results. Try removing a filter.",empty_venue:"No dates with these filters.",
@@ -796,7 +798,7 @@ es:{hk:"El mapa de los DJ",hs:"Dónde pinchan los DJ, en todo el mundo.",u_dates
  note0:"<strong>Fechas reales</strong>. Entradas: enlace en cada fecha. Algunos DJ aún no tienen fecha anunciada.",
  note1:"<strong>Fechas reales</strong>, actualizadas automáticamente (última actualización: {d}). Entradas: enlace en cada fecha.",
  search:"Buscar un DJ, un club, una ciudad",a_filters:"Filtros",a_style:"Estilo de música",country:"País",month:"Mes",around:"Alrededor de",radius:"Radio",
- all_countries:"Todos los países",all_dates:"Todas las fechas",everywhere:"En todo el mundo",
+ cont:"Continente", all_countries:"Todos los países", c_all:"Todos los continentes",c_eu:"Europa",c_na:"Norteamérica",c_sa:"Sudamérica",c_as:"Asia",c_af:"África",c_oc:"Oceanía",all_dates:"Todas las fechas",everywhere:"En todo el mundo",
  p_world:"Mundo",p_europe:"Europa",p_dubai:"Dubái",p_americas:"América",a_goto:"Ir a",a_zin:"Acercar",a_zout:"Alejar",sat_view:"Vista satélite",a_results:"Resultados",a_view:"Vista",
  v_dates:"Fechas",favs:"Mis DJ",tix:"Entradas",tix_t:"Página del evento con las entradas",more_dates:"Mostrar más fechas",more_djs:"Mostrar más DJ",
  empty_fav:"Aún no hay favoritos. Toca el corazón de un DJ para añadirlo aquí.",empty_none:"Sin resultados. Prueba a quitar un filtro.",empty_venue:"Ninguna fecha con estos filtros.",
@@ -808,7 +810,7 @@ pt:{hk:"O mapa dos DJs",hs:"Onde os DJs tocam, em todo o mundo.",u_dates:"datas"
  note0:"<strong>Datas reais</strong>. Ingressos: link em cada data. Alguns DJs ainda não têm data anunciada.",
  note1:"<strong>Datas reais</strong>, atualizadas automaticamente (última atualização: {d}). Ingressos: link em cada data.",
  search:"Procurar um DJ, um clube, uma cidade",a_filters:"Filtros",a_style:"Estilo musical",country:"País",month:"Mês",around:"Perto de",radius:"Raio",
- all_countries:"Todos os países",all_dates:"Todas as datas",everywhere:"Em todo o mundo",
+ cont:"Continente", all_countries:"Todos os países", c_all:"Todos os continentes",c_eu:"Europa",c_na:"América do Norte",c_sa:"América do Sul",c_as:"Ásia",c_af:"África",c_oc:"Oceania",all_dates:"Todas as datas",everywhere:"Em todo o mundo",
  p_world:"Mundo",p_europe:"Europa",p_dubai:"Dubai",p_americas:"Américas",a_goto:"Ir para",a_zin:"Aumentar zoom",a_zout:"Diminuir zoom",sat_view:"Vista de satélite",a_results:"Resultados",a_view:"Exibição",
  v_dates:"Datas",favs:"Meus DJs",tix:"Ingressos",tix_t:"Página do evento com os ingressos",more_dates:"Mostrar mais datas",more_djs:"Mostrar mais DJs",
  empty_fav:"Ainda não há favoritos. Toque no coração de um DJ para adicioná-lo aqui.",empty_none:"Nenhum resultado. Tente remover um filtro.",empty_venue:"Nenhuma data com esses filtros.",
@@ -820,7 +822,7 @@ it:{hk:"La mappa dei DJ",hs:"Dove suonano i DJ, in tutto il mondo.",u_dates:"dat
  note0:"<strong>Date reali</strong>. Biglietti: link su ogni data. Alcuni DJ non hanno ancora una data annunciata.",
  note1:"<strong>Date reali</strong>, aggiornate automaticamente (ultimo aggiornamento: {d}). Biglietti: link su ogni data.",
  search:"Cerca un DJ, un club, una città",a_filters:"Filtri",a_style:"Stile musicale",country:"Paese",month:"Mese",around:"Intorno a",radius:"Raggio",
- all_countries:"Tutti i paesi",all_dates:"Tutte le date",everywhere:"In tutto il mondo",
+ cont:"Continente", all_countries:"Tutti i paesi", c_all:"Tutti i continenti",c_eu:"Europa",c_na:"Nord America",c_sa:"Sud America",c_as:"Asia",c_af:"Africa",c_oc:"Oceania",all_dates:"Tutte le date",everywhere:"In tutto il mondo",
  p_world:"Mondo",p_europe:"Europa",p_dubai:"Dubai",p_americas:"Americhe",a_goto:"Vai a",a_zin:"Ingrandisci",a_zout:"Riduci",sat_view:"Vista satellitare",a_results:"Risultati",a_view:"Visualizzazione",
  v_dates:"Date",favs:"I miei DJ",tix:"Biglietti",tix_t:"Pagina dell'evento con i biglietti",more_dates:"Mostra altre date",more_djs:"Mostra altri DJ",
  empty_fav:"Ancora nessun preferito. Tocca il cuore di un DJ per aggiungerlo qui.",empty_none:"Nessun risultato. Prova a togliere un filtro.",empty_venue:"Nessuna data con questi filtri.",
@@ -832,7 +834,7 @@ de:{hk:"Die DJ-Karte",hs:"Wo DJs auflegen – überall auf der Welt.",u_dates:"T
  note0:"<strong>Echte Termine</strong>. Tickets: Link bei jedem Termin. Einige DJs haben noch keinen angekündigten Termin.",
  note1:"<strong>Echte Termine</strong>, automatisch aktualisiert (zuletzt: {d}). Tickets: Link bei jedem Termin.",
  search:"DJ, Club oder Stadt suchen",a_filters:"Filter",a_style:"Musikstil",country:"Land",month:"Monat",around:"In der Nähe von",radius:"Umkreis",
- all_countries:"Alle Länder",all_dates:"Alle Termine",everywhere:"Weltweit",
+ cont:"Kontinent", all_countries:"Alle Länder", c_all:"Alle Kontinente",c_eu:"Europa",c_na:"Nordamerika",c_sa:"Südamerika",c_as:"Asien",c_af:"Afrika",c_oc:"Ozeanien",all_dates:"Alle Termine",everywhere:"Weltweit",
  p_world:"Welt",p_europe:"Europa",p_dubai:"Dubai",p_americas:"Amerika",a_goto:"Gehe zu",a_zin:"Vergrößern",a_zout:"Verkleinern",sat_view:"Satellitenansicht",a_results:"Ergebnisse",a_view:"Anzeige",
  v_dates:"Termine",favs:"Meine DJs",tix:"Tickets",tix_t:"Veranstaltungsseite mit Tickets",more_dates:"Mehr Termine anzeigen",more_djs:"Mehr DJs anzeigen",
  empty_fav:"Noch keine Favoriten. Tippe auf das Herz eines DJs, um ihn hier hinzuzufügen.",empty_none:"Keine Ergebnisse. Entferne einen Filter.",empty_venue:"Keine Termine mit diesen Filtern.",
@@ -844,7 +846,7 @@ zh:{hk:"DJ 地图",hs:"全球 DJ 演出地点，一图尽览。",u_dates:"场演
  note0:"<strong>真实日期</strong>。购票：每个日期都有链接。部分 DJ 暂未公布日期。",
  note1:"<strong>真实日期</strong>，自动更新（最后更新：{d}）。购票：每个日期都有链接。",
  search:"搜索 DJ、俱乐部、城市",a_filters:"筛选",a_style:"音乐风格",country:"国家",month:"月份",around:"附近城市",radius:"半径",
- all_countries:"所有国家",all_dates:"所有日期",everywhere:"全球",
+ cont:"大洲", all_countries:"所有国家", c_all:"所有大洲",c_eu:"欧洲",c_na:"北美洲",c_sa:"南美洲",c_as:"亚洲",c_af:"非洲",c_oc:"大洋洲",all_dates:"所有日期",everywhere:"全球",
  p_world:"全球",p_europe:"欧洲",p_dubai:"迪拜",p_americas:"美洲",a_goto:"前往",a_zin:"放大",a_zout:"缩小",sat_view:"卫星视图",a_results:"结果",a_view:"显示方式",
  v_dates:"日期",favs:"我的 DJ",tix:"购票",tix_t:"含购票的活动页面",more_dates:"显示更多日期",more_djs:"显示更多 DJ",
  empty_fav:"还没有收藏。点击 DJ 的爱心即可添加到这里。",empty_none:"没有结果。试试去掉一个筛选条件。",empty_venue:"这些筛选条件下没有日期。",
@@ -856,7 +858,7 @@ ja:{hk:"DJマップ",hs:"世界中のDJの出演先がひと目でわかる。",
  note0:"<strong>本物の日程</strong>。チケット：各日程にリンクあり。まだ日程が未発表のDJもいます。",
  note1:"<strong>本物の日程</strong>、自動更新（最終更新：{d}）。チケット：各日程にリンクあり。",
  search:"DJ・クラブ・都市を検索",a_filters:"フィルター",a_style:"ジャンル",country:"国",month:"月",around:"周辺",radius:"半径",
- all_countries:"すべての国",all_dates:"すべての日程",everywhere:"世界中",
+ cont:"大陸", all_countries:"すべての国", c_all:"すべての大陸",c_eu:"ヨーロッパ",c_na:"北米",c_sa:"南米",c_as:"アジア",c_af:"アフリカ",c_oc:"オセアニア",all_dates:"すべての日程",everywhere:"世界中",
  p_world:"世界",p_europe:"ヨーロッパ",p_dubai:"ドバイ",p_americas:"南北アメリカ",a_goto:"移動",a_zin:"拡大",a_zout:"縮小",sat_view:"衛星表示",a_results:"結果",a_view:"表示",
  v_dates:"日程",favs:"マイDJ",tix:"チケット",tix_t:"チケット付きイベントページ",more_dates:"さらに日程を表示",more_djs:"さらにDJを表示",
  empty_fav:"お気に入りはまだありません。DJのハートをタップして追加しましょう。",empty_none:"結果がありません。フィルターを外してみてください。",empty_venue:"このフィルターでは日程がありません。",
@@ -871,7 +873,7 @@ de:{"Nice":"Nizza","Bruxelles":"Brüssel","Genève":"Genf","Londres":"London","B
 zh:{"Paris":"巴黎","Lyon":"里昂","Marseille":"马赛","Bordeaux":"波尔多","Lille":"里尔","Toulouse":"图卢兹","Nice":"尼斯","Bruxelles":"布鲁塞尔","Genève":"日内瓦","Londres":"伦敦","Amsterdam":"阿姆斯特丹","Berlin":"柏林","Barcelone":"巴塞罗那","Madrid":"马德里","Milan":"米兰","Lisbonne":"里斯本","New York":"纽约","Los Angeles":"洛杉矶","Miami":"迈阿密","Montréal":"蒙特利尔","São Paulo":"圣保罗","Tokyo":"东京"},
 ja:{"Paris":"パリ","Lyon":"リヨン","Marseille":"マルセイユ","Bordeaux":"ボルドー","Lille":"リール","Toulouse":"トゥールーズ","Nice":"ニース","Bruxelles":"ブリュッセル","Genève":"ジュネーブ","Londres":"ロンドン","Amsterdam":"アムステルダム","Berlin":"ベルリン","Barcelone":"バルセロナ","Madrid":"マドリード","Milan":"ミラノ","Lisbonne":"リスボン","New York":"ニューヨーク","Los Angeles":"ロサンゼルス","Miami":"マイアミ","Montréal":"モントリオール","São Paulo":"サンパウロ","Tokyo":"東京"}
 };
-const ISO={"Allemagne":"DE","Arabie saoudite":"SA","Australie":"AU","Belgique":"BE","Brésil":"BR","Canada":"CA","Chili":"CL","Croatie":"HR","Espagne":"ES","France":"FR","Italie":"IT","Japon":"JP","Mexique":"MX","Pays-Bas":"NL","Pérou":"PE","Royaume-Uni":"GB","Thaïlande":"TH","Turquie":"TR","Égypte":"EG","Émirats arabes unis":"AE","États-Unis":"US","Portugal":"PT","Suisse":"CH","Autriche":"AT","Irlande":"IE","Grèce":"GR","Pologne":"PL","Hongrie":"HU","Serbie":"RS","Argentine":"AR","Colombie":"CO","Inde":"IN","Maroc":"MA","Afrique du Sud":"ZA","Chine":"CN","Singapour":"SG","Indonésie":"ID","Qatar":"QA","Suède":"SE","Danemark":"DK","Norvège":"NO","Finlande":"FI","République tchèque":"CZ","Roumanie":"RO","Bulgarie":"BG","Slovénie":"SI","Monténégro":"ME","Costa Rica":"CR","Uruguay":"UY","Nouvelle-Zélande":"NZ","Corée du Sud":"KR","Israël":"IL","Liban":"LB","Jordanie":"JO","Malte":"MT","Chypre":"CY","Luxembourg":"LU","Islande":"IS","Estonie":"EE","Lettonie":"LV","Lituanie":"LT","Ukraine":"UA","Russie":"RU","Pays de Galles":"GB","Écosse":"GB"};
+const ISO={"Allemagne":"DE","Arabie saoudite":"SA","Australie":"AU","Belgique":"BE","Brésil":"BR","Canada":"CA","Chili":"CL","Croatie":"HR","Espagne":"ES","France":"FR","Italie":"IT","Japon":"JP","Mexique":"MX","Pays-Bas":"NL","Pérou":"PE","Royaume-Uni":"GB","Thaïlande":"TH","Turquie":"TR","Égypte":"EG","Émirats arabes unis":"AE","États-Unis":"US","Portugal":"PT","Suisse":"CH","Autriche":"AT","Irlande":"IE","Grèce":"GR","Pologne":"PL","Hongrie":"HU","Serbie":"RS","Argentine":"AR","Colombie":"CO","Inde":"IN","Maroc":"MA","Afrique du Sud":"ZA","Chine":"CN","Singapour":"SG","Indonésie":"ID","Qatar":"QA","Suède":"SE","Danemark":"DK","Norvège":"NO","Finlande":"FI","République tchèque":"CZ","Roumanie":"RO","Bulgarie":"BG","Slovénie":"SI","Monténégro":"ME","Costa Rica":"CR","Uruguay":"UY","Nouvelle-Zélande":"NZ","Corée du Sud":"KR","Israël":"IL","Liban":"LB","Jordanie":"JO","Malte":"MT","Chypre":"CY","Luxembourg":"LU","Islande":"IS","Estonie":"EE","Lettonie":"LV","Lituanie":"LT","Ukraine":"UA","Russie":"RU","Pays de Galles":"GB","Écosse":"GB","Kenya":"KE"};
 let LANG="fr", HASLANG=false;
 (function(){
   let p=null; try{p=new URLSearchParams(location.search).get("lang");}catch(e){}
@@ -906,7 +908,7 @@ const STACKED = () => matchMedia("(max-width: 979px)").matches;
 
 function loadFavs(){try{return new Set(JSON.parse(localStorage.getItem("djmap.favs")||"[]"));}catch(e){return new Set();}}
 function saveFavs(){try{localStorage.setItem("djmap.favs",JSON.stringify([...state.favs]));}catch(e){}}
-const state = {q:"",genres:new Set(GKEYS),country:"",month:"",view:"dates",limit:40,detail:null,venue:null,favs:loadFavs(),onlyFavs:false,onlyFest:false,sat:true,city:null,km:300};
+const state = {q:"",genres:new Set(GKEYS),country:"",continent:"",month:"",view:"dates",limit:40,detail:null,venue:null,favs:loadFavs(),onlyFavs:false,onlyFest:false,sat:true,city:null,km:300};
 const CITIES=[["Paris",48.8566,2.3522],["Lyon",45.764,4.8357],["Marseille",43.2965,5.3698],["Bordeaux",44.8378,-0.5792],["Lille",50.6292,3.0573],["Toulouse",43.6047,1.4442],["Nice",43.7102,7.262],["Bruxelles",50.8503,4.3517],["Genève",46.2044,6.1432],["Londres",51.5072,-0.1276],["Amsterdam",52.3676,4.9041],["Berlin",52.52,13.405],["Barcelone",41.3874,2.1686],["Madrid",40.4168,-3.7038],["Milan",45.4642,9.19],["Lisbonne",38.7223,-9.1393],["New York",40.7128,-74.006],["Los Angeles",34.0522,-118.2437],["Miami",25.7617,-80.1918],["Montréal",45.5019,-73.5674],["São Paulo",-23.5505,-46.6333],["Tokyo",35.6762,139.6503]];
 const distKm=(la1,lo1,la2,lo2)=>{const r=Math.PI/180,x=Math.pow(Math.sin((la2-la1)*r/2),2)+Math.cos(la1*r)*Math.cos(la2*r)*Math.pow(Math.sin((lo2-lo1)*r/2),2);return 12742*Math.asin(Math.sqrt(x));};
 
@@ -921,6 +923,7 @@ function filtered(){
     if(state.onlyFavs && !state.favs.has(e.dj)) return false;
     if(state.onlyFest && !isFest(e)) return false;
     if(state.city!==null){const c=CITIES[state.city]; if(distKm(c[1],c[2],v.lat,v.lon)>state.km) return false;}
+    if(state.continent && contOf(v.country)!==state.continent) return false;
     if(state.country && v.country!==state.country) return false;
     if(state.month && e.date.slice(0,7)!==state.month) return false;
     if(q && norm(e.dj+" "+v.n+" "+v.city+" "+v.country).indexOf(q)<0) return false;
@@ -929,10 +932,22 @@ function filtered(){
 }
 
 /* ===== 4. Filtres ===== */
+const EN2FR={"United States Of America":"États-Unis","United States":"États-Unis","USA":"États-Unis","Great Britain":"Royaume-Uni","United Kingdom":"Royaume-Uni","England":"Royaume-Uni","Scotland":"Écosse","Wales":"Pays de Galles","Germany":"Allemagne","Spain":"Espagne","Italy":"Italie","Netherlands":"Pays-Bas","Belgium":"Belgique","Switzerland":"Suisse","Austria":"Autriche","Sweden":"Suède","Denmark":"Danemark","Norway":"Norvège","Finland":"Finlande","Poland":"Pologne","Czech Republic":"République tchèque","Czechia":"République tchèque","Ireland":"Irlande","Portugal":"Portugal","Greece":"Grèce","Hungary":"Hongrie","Romania":"Roumanie","Bulgaria":"Bulgarie","Croatia":"Croatie","Serbia":"Serbie","Slovenia":"Slovénie","Montenegro":"Monténégro","Turkey":"Turquie","Türkiye":"Turquie","Luxembourg":"Luxembourg","Iceland":"Islande","Estonia":"Estonie","Latvia":"Lettonie","Lithuania":"Lituanie","Ukraine":"Ukraine","Russia":"Russie","Malta":"Malte","Cyprus":"Chypre","Mexico":"Mexique","Brazil":"Brésil","Chile":"Chili","Peru":"Pérou","Argentina":"Argentine","Colombia":"Colombie","Uruguay":"Uruguay","Australia":"Australie","New Zealand":"Nouvelle-Zélande","Japan":"Japon","China":"Chine","South Korea":"Corée du Sud","Thailand":"Thaïlande","India":"Inde","Indonesia":"Indonésie","Singapore":"Singapour","United Arab Emirates":"Émirats arabes unis","Saudi Arabia":"Arabie saoudite","Qatar":"Qatar","Israel":"Israël","Lebanon":"Liban","Jordan":"Jordanie","Egypt":"Égypte","Morocco":"Maroc","South Africa":"Afrique du Sud","Costa Rica":"Costa Rica"};
+const CONTS=[["eu",10,50,4.6],["na",-100,40,2.5],["sa",-60,-15,2.5],["as",95,30,2.2],["af",20,3,2.6],["oc",150,-25,3.4]];
+const CONT_ISO={eu:"DE BE HR ES FR IT NL GB AD AT RO RS TR PT CH IE GR PL HU SE DK NO FI CZ BG SI ME MT CY LU IS EE LV LT UA RU SK BA MK AL",na:"US CA MX CR PA DO JM CU PR BS GT HN SV NI BZ",sa:"BR CL PE AR CO UY EC BO PY VE",as:"TH IN JP CN SG ID KR SA AE QA IL LB JO KW BH OM TW HK MY PH VN KH LK NP MV",af:"EG MA ZA TN KE NG GH SN DZ TZ",oc:"AU NZ FJ"};
+const CONT_OF={}; for(const k in CONT_ISO) CONT_ISO[k].split(" ").forEach(c=>{CONT_OF[c]=k;});
+const contOf=n=>CONT_OF[ISO[n]]||"";
+function buildGeo(){
+  const present=new Set(Object.values(VENUES).map(v=>contOf(v.country)));
+  $("#cont").innerHTML=`<option value="">${t("c_all")}</option>`+CONTS.filter(c=>present.has(c[0])).map(c=>`<option value="${c[0]}">${t("c_"+c[0])}</option>`).join("");
+  $("#cont").value=state.continent;
+  const countries=[...new Set(Object.values(VENUES).map(v=>v.country).filter(c=>!state.continent||contOf(c)===state.continent))].sort((a,b)=>countryName(a).localeCompare(countryName(b),LOC[LANG]));
+  $("#country").innerHTML = `<option value="">${t("all_countries")}</option>`+countries.map(c=>`<option value="${esc(c)}">${esc(countryName(c))}</option>`).join("");
+  $("#country").value=state.country;
+}
 function buildFilters(){
   $("#genres").innerHTML = GKEYS.map(g=>`<button type="button" class="chip" data-g="${g}" style="--g:${GENRES[g].css}" aria-pressed="true"><i></i>${GENRES[g].label}</button>`).join("")+FESTCHIP+FAVCHIP;
-  const countries=[...new Set(Object.values(VENUES).map(v=>v.country))].sort((a,b)=>countryName(a).localeCompare(countryName(b),LOC[LANG]));
-  $("#country").innerHTML = `<option value="">${t("all_countries")}</option>`+countries.map(c=>`<option value="${esc(c)}">${esc(countryName(c))}</option>`).join("");
+  buildGeo();
   const months=[...new Set(EVENTS.map(e=>e.date.slice(0,7)))].sort();
   $("#month").innerHTML = `<option value="">${t("all_dates")}</option>`+months.map(m=>`<option value="${m}">${monthLabel(m)}</option>`).join("");
 }
@@ -1208,6 +1223,13 @@ pinsEl.addEventListener("click",e=>{
 /* ===== 8. Branchements ===== */
 function refresh(){ state.limit=40; buildPoints(); renderList(); renderDetail(); syncHearts(); render(); }
 $("#q").addEventListener("input",e=>{state.q=e.target.value;refresh();});
+$("#cont").addEventListener("change",e=>{
+  state.continent=e.target.value;
+  const c=CONTS.find(x=>x[0]===state.continent);
+  if(state.country && state.continent && contOf(state.country)!==state.continent) state.country="";
+  buildGeo(); refresh();
+  if(c) flyTo(c[1],c[2],c[3]); else flyTo(0,15,1);
+});
 $("#country").addEventListener("change",e=>{state.country=e.target.value;refresh();});
 $("#month").addEventListener("change",e=>{state.month=e.target.value;refresh();});
 $("#genres").addEventListener("click",e=>{
@@ -1282,7 +1304,7 @@ function start(){ if(window.homeStats)homeStats(); buildFilters(); buildCity(); 
     try{
       if(d&&Array.isArray(d.events)&&d.events.length){
         Object.keys(VENUES).forEach(k=>delete VENUES[k]);
-        Object.entries(d.venues).forEach(([k,v])=>{VENUES[k]=Object.assign({zk:60},v);});
+        Object.entries(d.venues).forEach(([k,v])=>{VENUES[k]=Object.assign({zk:60},v);VENUES[k].country=EN2FR[VENUES[k].country]||VENUES[k].country;});
         d.events.forEach(e=>{ if(e.festival===true&&e.dj&&!DJ_BY_NAME.has(e.dj)){ const g=GENRES[e.style]?e.style:"edm", nd={n:e.dj,g:g,fest:true,bio:GENFR[g]}; DJS.push(nd); DJ_BY_NAME.set(nd.n,nd); } });
         EVENTS.length=0; d.events.filter(e=>e.date>=today&&VENUES[e.venue]&&DJ_BY_NAME.has(e.dj)).forEach(e=>EVENTS.push(e));
         EVENTS.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:a.dj.localeCompare(b.dj));
