@@ -1,5 +1,5 @@
 <!doctype html><html lang="fr"><head>
-<meta name='impact-site-verification' value='0885046c-1982-4044-a7b3-f0b15d6eb219'><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DJ Map</title><meta name="description" content="Où jouent les DJ, partout dans le monde : dates, lieux et billets."><meta property="og:title" content="DJ Map"><meta property="og:description" content="Où jouent les DJ, partout dans le monde : dates, lieux et billets."><meta property="og:type" content="website"><meta property="og:site_name" content="DJ Map"><meta name="apple-mobile-web-app-title" content="DJ Map"><meta name="twitter:card" content="summary"><style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style></head><body><title>DJ Map</title>
+<meta name='impact-site-verification' value='0885046c-1982-4044-a7b3-f0b15d6eb219'><meta charset="utf-8"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#08090f"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DJ Map"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DJ Map</title><meta name="description" content="Où jouent les DJ, partout dans le monde : dates, lieux et billets."><meta property="og:title" content="DJ Map"><meta property="og:description" content="Où jouent les DJ, partout dans le monde : dates, lieux et billets."><meta property="og:type" content="website"><meta property="og:site_name" content="DJ Map"><meta name="apple-mobile-web-app-title" content="DJ Map"><meta name="twitter:card" content="summary"><style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style></head><body><title>DJ Map</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,6 +152,17 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 .me span{position:absolute;left:0;transform:translateX(-50%);white-space:nowrap;font:600 11px var(--f-body);text-shadow:0 0 3px var(--ocean),0 0 3px var(--ocean),0 0 6px var(--ocean)}
 .selects+.selects{margin-top:0}
 .selects label.wide{grid-column:1/-1}
+.alerts{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:0}
+.alerts summary{cursor:pointer;padding:10px 12px;font-size:13.5px;font-weight:600;list-style:none;display:flex;gap:8px;align-items:center}
+.alerts summary::-webkit-details-marker{display:none}
+.alerts summary b{background:var(--heart);color:#fff;border-radius:999px;padding:1px 8px;font-size:12px}
+.alin{padding:0 12px 12px;display:grid;gap:8px}
+#notifbtn[hidden],#alcount[hidden]{display:none}
+.alhint{margin:0;font-size:12.5px;color:var(--muted)}
+.allist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.allist li button{width:100%;text-align:left;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-size:13px}
+.allist li small{display:block;color:var(--muted);font-size:12px}
+
 .more{margin:10px 0 0;padding:9px 18px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-weight:500;font-size:13.5px}
 .more:hover{background:var(--panel2)}
 .empty{padding:22px 0;color:var(--muted)}
@@ -268,6 +279,21 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
           <option value="100">100 km</option><option value="300" selected>300 km</option><option value="1000">1 000 km</option><option value="3000">3 000 km</option>
         </select></label>
       </div>
+      <details id="alerts" class="alerts">
+        <summary><span data-i18n="al_t"></span> <b id="alcount" hidden></b></summary>
+        <div class="alin">
+          <p class="alhint" data-i18n="al_h"></p>
+          <div class="selects">
+            <label for="homecity"><span data-i18n="al_home"></span><select id="homecity"></select></label>
+            <label for="homekm"><span data-i18n="radius"></span><select id="homekm">
+              <option value="100">100 km</option><option value="300">300 km</option><option value="1000">1 000 km</option>
+            </select></label>
+          </div>
+          <button type="button" id="notifbtn" class="chip" data-i18n="al_on"></button>
+          <p id="alstate" class="alhint"></p>
+          <ul id="allist" class="allist"></ul>
+        </div>
+      </details>
     </section>
 
     <section class="mapbox" data-i18n-aria="f1">
@@ -774,7 +800,7 @@ fr:{hk:"La carte des DJ",hs:"Où jouent les DJ, partout dans le monde.",u_dates:
  note0:"<strong>Vraies dates</strong>. Billets : lien sur chaque date. Certains DJ n'ont pas encore de date annoncée.",
  note1:"<strong>Vraies dates</strong>, mises à jour automatiquement (dernière mise à jour : {d}). Billets : lien sur chaque date.",
  search:"Chercher un DJ, un club, une ville",a_filters:"Filtres",a_style:"Style de musique",country:"Pays",month:"Mois",around:"Autour de",radius:"Rayon",
- cont:"Continent", all_countries:"Tous les pays", c_all:"Tous les continents",c_eu:"Europe",c_na:"Amérique du Nord",c_sa:"Amérique du Sud",c_as:"Asie",c_af:"Afrique",c_oc:"Océanie",all_dates:"Toutes les dates",everywhere:"Partout dans le monde",
+ cont:"Continent", al_t:"🔔 Alertes près de chez moi", al_h:"Choisis ta ville et un rayon : on te prévient quand un de tes DJ favoris (♡) joue près de chez toi. Les alertes sont vérifiées à chaque ouverture de l'appli.", al_home:"Chez moi", al_on:"Activer les notifications", al_off:"Notifications activées ✓", al_blocked:"Notifications bloquées dans ton navigateur.", al_unsup:"Notifications non disponibles ici.", al_none:"Aucune date pour le moment. Ajoute des DJ en favoris (♡) ou élargis le rayon.", al_nofav:"Ajoute d'abord des DJ en favoris (♡).", al_one:"{n} de tes DJ joue près de chez toi", al_many:"{n} de tes DJ jouent près de chez toi", al_pick:"Choisis une ville",  all_countries:"Tous les pays", c_all:"Tous les continents",c_eu:"Europe",c_na:"Amérique du Nord",c_sa:"Amérique du Sud",c_as:"Asie",c_af:"Afrique",c_oc:"Océanie",all_dates:"Toutes les dates",everywhere:"Partout dans le monde",
  p_world:"Monde",p_europe:"Europe",p_dubai:"Dubaï",p_americas:"Amériques",a_goto:"Aller à",a_zin:"Zoom avant",a_zout:"Zoom arrière",sat_view:"Vue satellite",a_results:"Résultats",a_view:"Affichage",
  v_dates:"Dates",favs:"Mes DJ",tix:"Billets",tix_t:"Page de l'événement avec les billets",more_dates:"Afficher plus de dates",more_djs:"Afficher plus de DJ",
  empty_fav:"Aucun favori pour l'instant. Touche le cœur d'un DJ pour l'ajouter ici.",empty_none:"Aucun résultat. Essaie d'enlever un filtre.",empty_venue:"Aucune date avec ces filtres.",
@@ -786,7 +812,7 @@ en:{hk:"The DJ map",hs:"Where DJs play, all around the world.",u_dates:"dates",u
  note0:"<strong>Real dates</strong>. Tickets: link on each date. Some DJs have no announced date yet.",
  note1:"<strong>Real dates</strong>, updated automatically (last update: {d}). Tickets: link on each date.",
  search:"Search a DJ, a club, a city",a_filters:"Filters",a_style:"Music style",country:"Country",month:"Month",around:"Around",radius:"Radius",
- cont:"Continent", all_countries:"All countries", c_all:"All continents",c_eu:"Europe",c_na:"North America",c_sa:"South America",c_as:"Asia",c_af:"Africa",c_oc:"Oceania",all_dates:"All dates",everywhere:"Anywhere in the world",
+ cont:"Continent", al_t:"🔔 Alerts near me", al_h:"Pick your city and a radius: we tell you when one of your favourite DJs (♡) plays near you. Alerts are checked each time you open the app.", al_home:"Home", al_on:"Turn on notifications", al_off:"Notifications on ✓", al_blocked:"Notifications are blocked in your browser.", al_unsup:"Notifications are not available here.", al_none:"No dates yet. Add DJs to your favourites (♡) or widen the radius.", al_nofav:"First add DJs to your favourites (♡).", al_one:"{n} of your DJs plays near you", al_many:"{n} of your DJs play near you", al_pick:"Pick a city",  all_countries:"All countries", c_all:"All continents",c_eu:"Europe",c_na:"North America",c_sa:"South America",c_as:"Asia",c_af:"Africa",c_oc:"Oceania",all_dates:"All dates",everywhere:"Anywhere in the world",
  p_world:"World",p_europe:"Europe",p_dubai:"Dubai",p_americas:"Americas",a_goto:"Go to",a_zin:"Zoom in",a_zout:"Zoom out",sat_view:"Satellite view",a_results:"Results",a_view:"Display",
  v_dates:"Dates",favs:"My DJs",tix:"Tickets",tix_t:"Event page with tickets",more_dates:"Show more dates",more_djs:"Show more DJs",
  empty_fav:"No favourites yet. Tap a DJ's heart to add them here.",empty_none:"No results. Try removing a filter.",empty_venue:"No dates with these filters.",
@@ -970,7 +996,7 @@ function syncHearts(){
   document.querySelectorAll(".heart").forEach(b=>b.setAttribute("aria-pressed",state.favs.has(b.dataset.fav)?"true":"false"));
   const fb=$("#favbtn"); if(fb) fb.querySelector("b").textContent=state.favs.size;
 }
-function toggleFav(n){ if(state.favs.has(n)) state.favs.delete(n); else state.favs.add(n); saveFavs(); if(state.onlyFavs) refresh(); else syncHearts(); }
+function toggleFav(n){ if(state.favs.has(n)) state.favs.delete(n); else state.favs.add(n); saveFavs(); if(typeof renderAlerts==="function") renderAlerts(); if(state.onlyFavs) refresh(); else syncHearts(); }
 
 function renderList(){
   const evs=filtered(), box=$("#list");
@@ -1296,7 +1322,46 @@ $("#radius").addEventListener("change",e=>{ state.km=+e.target.value; refresh();
   window.homeStats=function(){const d=EVENTS.length,dj=new Set(EVENTS.filter(e=>!isFest(e)).map(e=>e.dj)).size,v=new Set(EVENTS.map(e=>e.venue)).size;
     $("#hn1").textContent=d;$("#hn2").textContent=dj;$("#hn3").textContent=v;};
 })();
-function start(){ if(window.homeStats)homeStats(); buildFilters(); buildCity(); buildPoints(); renderList(); new ResizeObserver(resize).observe(mapEl); resize(); }
+/* ===== Alertes « DJ favoris près de chez moi » (enregistrées sur l'appareil) ===== */
+const HOMEKEY="djmap.home", NOTKEY="djmap.notified";
+let HOME=(function(){try{const h=JSON.parse(localStorage.getItem(HOMEKEY)||"null");if(h&&CITIES.some(c=>c[0]===h.city))return h;}catch(e){}return null;})();
+function saveHome(){try{localStorage.setItem(HOMEKEY,JSON.stringify(HOME));}catch(e){}}
+function alertMatches(){
+  if(!HOME||!state.favs.size) return [];
+  const c=CITIES.find(x=>x[0]===HOME.city), today=new Date().toISOString().slice(0,10), lim=new Date(Date.now()+120*864e5).toISOString().slice(0,10);
+  return EVENTS.filter(e=>{const v=VENUES[e.venue]; return v&&state.favs.has(e.dj)&&e.date>=today&&e.date<=lim&&distKm(c[1],c[2],v.lat,v.lon)<=HOME.km;});
+}
+function renderAlerts(){
+  const hc=$("#homecity");
+  hc.innerHTML='<option value="">'+esc(t("al_pick"))+'</option>'+CITIES.map(c=>'<option value="'+esc(c[0])+'">'+esc(cityName(c[0]))+'</option>').join("");
+  hc.value=HOME?HOME.city:""; $("#homekm").value=String(HOME?HOME.km:300);
+  const m=alertMatches(), cnt=$("#alcount");
+  cnt.hidden=!m.length; cnt.textContent=m.length;
+  $("#allist").innerHTML=m.slice(0,30).map(e=>{const v=VENUES[e.venue];return '<li><button type="button" data-dj="'+esc(e.dj)+'"><b>'+esc(e.dj)+'</b><small>'+esc(v.n)+' · '+esc(v.city)+' · '+esc(fmtShort(e.date))+'</small></button></li>';}).join("");
+  const st=$("#alstate"), nb=$("#notifbtn");
+  if(!("Notification" in window)){nb.hidden=true;st.textContent=t("al_unsup");}
+  else if(Notification.permission==="granted"){nb.hidden=true;st.textContent=t("al_off");}
+  else if(Notification.permission==="denied"){nb.hidden=true;st.textContent=t("al_blocked");}
+  else {nb.hidden=false;st.textContent="";}
+  if(!state.favs.size) st.textContent=(st.textContent?st.textContent+" ":"")+t("al_nofav");
+  else if(HOME&&!m.length) st.textContent=(st.textContent?st.textContent+" ":"")+t("al_none");
+}
+function notifyAlerts(){
+  if(!("Notification" in window)||Notification.permission!=="granted") return;
+  const m=alertMatches(); if(!m.length) return;
+  let seen=[]; try{seen=JSON.parse(localStorage.getItem(NOTKEY)||"[]");}catch(e){}
+  const key=e=>e.dj+"|"+e.venue+"|"+e.date, fresh=m.filter(e=>seen.indexOf(key(e))<0); if(!fresh.length) return;
+  const body=fresh.slice(0,3).map(e=>e.dj+" · "+VENUES[e.venue].city+" · "+fmtShort(e.date)).join("\n")+(fresh.length>3?"\n…":"");
+  const title=t(fresh.length===1?"al_one":"al_many",{n:fresh.length}), opt={body:body,icon:"icon-192.png",tag:"djmap-alerts"};
+  try{localStorage.setItem(NOTKEY,JSON.stringify(seen.concat(fresh.map(key)).slice(-300)));}catch(e){}
+  if(navigator.serviceWorker) navigator.serviceWorker.ready.then(r=>r.showNotification(title,opt)).catch(()=>{try{new Notification(title,opt);}catch(e){}});
+  else try{new Notification(title,opt);}catch(e){}
+}
+$("#homecity").addEventListener("change",e=>{HOME=e.target.value?{city:e.target.value,km:+$("#homekm").value}:null;saveHome();renderAlerts();notifyAlerts();});
+$("#homekm").addEventListener("change",e=>{if(HOME){HOME.km=+e.target.value;saveHome();}renderAlerts();notifyAlerts();});
+$("#notifbtn").addEventListener("click",()=>{ if(!("Notification" in window)) return; Notification.requestPermission().then(()=>{renderAlerts();notifyAlerts();}); });
+if(navigator.serviceWorker && /^https?:/.test(location.protocol)) window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});
+function start(){ if(window.homeStats)homeStats(); buildFilters(); buildCity(); renderAlerts(); notifyAlerts(); buildPoints(); renderList(); new ResizeObserver(resize).observe(mapEl); resize(); }
 /* Si events.json existe à côté de la page (mis à jour chaque jour par le robot), on l'utilise. Sinon on garde les dates intégrées ci-dessus. */
 (function(){
   const today=new Date().toISOString().slice(0,10);
