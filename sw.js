@@ -1,7 +1,7 @@
 /* DJ Map : fonctionnement hors connexion.
    - events.json : réseau d'abord (dates fraîches), sinon la dernière copie.
    - page et images : copie locale tout de suite, mise à jour en arrière-plan. */
-const V = "djmap-v2";
+const V = "djmap-v3";
 const CORE = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "satellite.jpg", "events.json"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(V).then(c => Promise.all(CORE.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
