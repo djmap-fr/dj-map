@@ -158,6 +158,18 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 .alerts summary b{background:var(--heart);color:#fff;border-radius:999px;padding:1px 8px;font-size:12px}
 .alin{padding:0 12px 12px;display:grid;gap:8px}
 #notifbtn[hidden],#alcount[hidden]{display:none}
+.hbtns{display:inline-flex;gap:8px;flex-wrap:wrap}
+.accm{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:20px;background:rgba(4,5,10,.72)}
+.accm[hidden]{display:none}
+.accbox{position:relative;width:min(420px,100%);background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:12px;max-height:90vh;overflow:auto}
+.accbox h2{margin:0;font:800 22px/1.1 var(--f-display)}
+.accbox label{display:grid;gap:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.accbox input{padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);font:16px var(--f-body);letter-spacing:0;text-transform:none}
+.accx{position:absolute;top:10px;right:10px;border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer}
+.accgo{padding:10px 14px;border:0;border-radius:999px;background:var(--fg);color:var(--bg);font:600 14px var(--f-body);cursor:pointer}
+.accdel{padding:8px;border:0;background:transparent;color:var(--muted);font:13px var(--f-body);text-decoration:underline;cursor:pointer}
+.accmsg{margin:0;min-height:1.2em;font-size:13px;color:var(--heart)}
+.accbox a{color:inherit}
 .alhint{margin:0;font-size:12.5px;color:var(--muted)}
 .allist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .allist li button{width:100%;text-align:left;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-size:13px}
@@ -244,6 +256,32 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 </style>
 
 <div class="page">
+  <div id="acc" class="accm" role="dialog" aria-modal="true" aria-labelledby="acct" hidden>
+    <div class="accbox">
+      <button type="button" class="accx" id="accx" data-i18n-aria="ac_close">✕</button>
+      <h2 id="acct" data-i18n="ac_t"></h2>
+      <div id="acc-out">
+        <p class="alhint" data-i18n="ac_h"></p>
+        <div id="acc-s1">
+          <label for="acc-mail"><span data-i18n="ac_mail"></span><input id="acc-mail" type="email" autocomplete="email" inputmode="email"></label>
+          <button type="button" class="accgo" id="acc-send" data-i18n="ac_send"></button>
+          <p class="alhint" data-i18n-html="ac_consent"></p>
+        </div>
+        <div id="acc-s2" hidden>
+          <p class="alhint" id="acc-sent"></p>
+          <label for="acc-code"><span data-i18n="ac_code"></span><input id="acc-code" type="text" autocomplete="one-time-code" inputmode="numeric" maxlength="10"></label>
+          <button type="button" class="accgo" id="acc-ok" data-i18n="ac_ok"></button>
+        </div>
+      </div>
+      <div id="acc-in" hidden>
+        <p class="alhint" id="acc-who"></p>
+        <p class="alhint" data-i18n="ac_sync"></p>
+        <button type="button" class="accgo" id="acc-logout" data-i18n="ac_out"></button>
+        <button type="button" class="accdel" id="acc-del" data-i18n="ac_del"></button>
+      </div>
+      <p class="accmsg" id="acc-msg" role="status"></p>
+    </div>
+  </div>
   <div id="langpage" class="off" role="dialog" aria-label="Language"><h2>DJ Map</h2><p class="lq">Choisis ta langue · Choose your language · Elige tu idioma</p><div id="lgrid"></div></div>
   <div id="home" role="dialog" aria-label="DJ Map">
   <button type="button" class="langbtn lb" data-openlang></button>
@@ -258,7 +296,7 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10
 </div>
   <header class="top">
     <div>
-      <div class="hrow"><h1>DJ Map</h1><button type="button" class="langbtn" data-openlang></button></div>
+      <div class="hrow"><h1>DJ Map</h1><span class="hbtns"><button type="button" class="langbtn" id="accbtn"></button><button type="button" class="langbtn" data-openlang></button></span></div>
       <p class="sub" data-i18n-html="sub"></p>
     </div>
     <p class="note" role="note" data-i18n-html="note0"></p>
@@ -800,7 +838,7 @@ fr:{hk:"La carte des DJ",hs:"Où jouent les DJ, partout dans le monde.",u_dates:
  note0:"<strong>Vraies dates</strong>. Billets : lien sur chaque date. Certains DJ n'ont pas encore de date annoncée.",
  note1:"<strong>Vraies dates</strong>, mises à jour automatiquement (dernière mise à jour : {d}). Billets : lien sur chaque date.",
  search:"Chercher un DJ, un club, une ville",a_filters:"Filtres",a_style:"Style de musique",country:"Pays",month:"Mois",around:"Autour de",radius:"Rayon",
- cont:"Continent", al_t:"🔔 Alertes près de chez moi", al_h:"Choisis ta ville et un rayon : on te prévient quand un de tes DJ favoris (♡) joue près de chez toi. Les alertes sont vérifiées à chaque ouverture de l'appli.", al_home:"Chez moi", al_on:"Activer les notifications", al_off:"Notifications activées ✓", al_blocked:"Notifications bloquées dans ton navigateur.", al_unsup:"Notifications non disponibles ici.", al_none:"Aucune date pour le moment. Ajoute des DJ en favoris (♡) ou élargis le rayon.", al_nofav:"Ajoute d'abord des DJ en favoris (♡).", al_one:"{n} de tes DJ joue près de chez toi", al_many:"{n} de tes DJ jouent près de chez toi", al_pick:"Choisis une ville",  all_countries:"Tous les pays", c_all:"Tous les continents",c_eu:"Europe",c_na:"Amérique du Nord",c_sa:"Amérique du Sud",c_as:"Asie",c_af:"Afrique",c_oc:"Océanie",all_dates:"Toutes les dates",everywhere:"Partout dans le monde",
+ cont:"Continent", al_t:"🔔 Alertes près de chez moi", al_h:"Choisis ta ville et un rayon : on te prévient quand un de tes DJ favoris (♡) joue près de chez toi. Les alertes sont vérifiées à chaque ouverture de l'appli.", al_home:"Chez moi", al_on:"Activer les notifications", al_off:"Notifications activées ✓", al_blocked:"Notifications bloquées dans ton navigateur.", al_unsup:"Notifications non disponibles ici.", al_none:"Aucune date pour le moment. Ajoute des DJ en favoris (♡) ou élargis le rayon.", al_nofav:"Ajoute d'abord des DJ en favoris (♡).", al_one:"{n} de tes DJ joue près de chez toi", al_many:"{n} de tes DJ jouent près de chez toi", al_pick:"Choisis une ville",  ac_btn:"Se connecter", ac_btn_in:"Mon compte", ac_t:"Mon compte DJ Map", ac_h:"Connecte-toi pour retrouver tes DJ favoris sur tous tes appareils. C'est facultatif : le site marche sans compte.", ac_mail:"Ton e-mail", ac_send:"Recevoir un code", ac_code:"Code reçu par e-mail", ac_ok:"Valider", ac_sent:"Code envoyé à {e}. Regarde aussi tes spams.", ac_who:"Connecté : {e}", ac_sync:"Tes DJ favoris et ta ville sont enregistrés sur ton compte.", ac_out:"Se déconnecter", ac_del:"Supprimer mon compte et mes données", ac_delq:"Supprimer ton compte et toutes tes données ? C'est définitif.", ac_err:"Une erreur est survenue. Réessaie dans un moment.", ac_bad:"Code incorrect ou expiré.", ac_mailbad:"Écris une adresse e-mail valide.", ac_off:"Pas de réseau : réessaie quand tu es connecté à Internet.", ac_close:"Fermer", ac_consent:"En continuant, tu acceptes la <a href=\"confidentialite.html\">politique de confidentialité</a>.",  all_countries:"Tous les pays", c_all:"Tous les continents",c_eu:"Europe",c_na:"Amérique du Nord",c_sa:"Amérique du Sud",c_as:"Asie",c_af:"Afrique",c_oc:"Océanie",all_dates:"Toutes les dates",everywhere:"Partout dans le monde",
  p_world:"Monde",p_europe:"Europe",p_dubai:"Dubaï",p_americas:"Amériques",a_goto:"Aller à",a_zin:"Zoom avant",a_zout:"Zoom arrière",sat_view:"Vue satellite",a_results:"Résultats",a_view:"Affichage",
  v_dates:"Dates",favs:"Mes DJ",tix:"Billets",tix_t:"Page de l'événement avec les billets",more_dates:"Afficher plus de dates",more_djs:"Afficher plus de DJ",
  empty_fav:"Aucun favori pour l'instant. Touche le cœur d'un DJ pour l'ajouter ici.",empty_none:"Aucun résultat. Essaie d'enlever un filtre.",empty_venue:"Aucune date avec ces filtres.",
@@ -812,7 +850,7 @@ en:{hk:"The DJ map",hs:"Where DJs play, all around the world.",u_dates:"dates",u
  note0:"<strong>Real dates</strong>. Tickets: link on each date. Some DJs have no announced date yet.",
  note1:"<strong>Real dates</strong>, updated automatically (last update: {d}). Tickets: link on each date.",
  search:"Search a DJ, a club, a city",a_filters:"Filters",a_style:"Music style",country:"Country",month:"Month",around:"Around",radius:"Radius",
- cont:"Continent", al_t:"🔔 Alerts near me", al_h:"Pick your city and a radius: we tell you when one of your favourite DJs (♡) plays near you. Alerts are checked each time you open the app.", al_home:"Home", al_on:"Turn on notifications", al_off:"Notifications on ✓", al_blocked:"Notifications are blocked in your browser.", al_unsup:"Notifications are not available here.", al_none:"No dates yet. Add DJs to your favourites (♡) or widen the radius.", al_nofav:"First add DJs to your favourites (♡).", al_one:"{n} of your DJs plays near you", al_many:"{n} of your DJs play near you", al_pick:"Pick a city",  all_countries:"All countries", c_all:"All continents",c_eu:"Europe",c_na:"North America",c_sa:"South America",c_as:"Asia",c_af:"Africa",c_oc:"Oceania",all_dates:"All dates",everywhere:"Anywhere in the world",
+ cont:"Continent", al_t:"🔔 Alerts near me", al_h:"Pick your city and a radius: we tell you when one of your favourite DJs (♡) plays near you. Alerts are checked each time you open the app.", al_home:"Home", al_on:"Turn on notifications", al_off:"Notifications on ✓", al_blocked:"Notifications are blocked in your browser.", al_unsup:"Notifications are not available here.", al_none:"No dates yet. Add DJs to your favourites (♡) or widen the radius.", al_nofav:"First add DJs to your favourites (♡).", al_one:"{n} of your DJs plays near you", al_many:"{n} of your DJs play near you", al_pick:"Pick a city",  ac_btn:"Log in", ac_btn_in:"My account", ac_t:"My DJ Map account", ac_h:"Log in to keep your favourite DJs on all your devices. It is optional: the site works without an account.", ac_mail:"Your email", ac_send:"Get a code", ac_code:"Code from your email", ac_ok:"Confirm", ac_sent:"Code sent to {e}. Check your spam too.", ac_who:"Logged in: {e}", ac_sync:"Your favourite DJs and your city are saved to your account.", ac_out:"Log out", ac_del:"Delete my account and data", ac_delq:"Delete your account and all your data? This cannot be undone.", ac_err:"Something went wrong. Try again in a moment.", ac_bad:"Wrong or expired code.", ac_mailbad:"Enter a valid email address.", ac_off:"No network: try again when you are online.", ac_close:"Close", ac_consent:"By continuing you accept the <a href=\"confidentialite.html\">privacy policy</a>.",  all_countries:"All countries", c_all:"All continents",c_eu:"Europe",c_na:"North America",c_sa:"South America",c_as:"Asia",c_af:"Africa",c_oc:"Oceania",all_dates:"All dates",everywhere:"Anywhere in the world",
  p_world:"World",p_europe:"Europe",p_dubai:"Dubai",p_americas:"Americas",a_goto:"Go to",a_zin:"Zoom in",a_zout:"Zoom out",sat_view:"Satellite view",a_results:"Results",a_view:"Display",
  v_dates:"Dates",favs:"My DJs",tix:"Tickets",tix_t:"Event page with tickets",more_dates:"Show more dates",more_djs:"Show more DJs",
  empty_fav:"No favourites yet. Tap a DJ's heart to add them here.",empty_none:"No results. Try removing a filter.",empty_venue:"No dates with these filters.",
@@ -996,7 +1034,7 @@ function syncHearts(){
   document.querySelectorAll(".heart").forEach(b=>b.setAttribute("aria-pressed",state.favs.has(b.dataset.fav)?"true":"false"));
   const fb=$("#favbtn"); if(fb) fb.querySelector("b").textContent=state.favs.size;
 }
-function toggleFav(n){ if(state.favs.has(n)) state.favs.delete(n); else state.favs.add(n); saveFavs(); if(typeof renderAlerts==="function") renderAlerts(); if(state.onlyFavs) refresh(); else syncHearts(); }
+function toggleFav(n){ if(state.favs.has(n)) state.favs.delete(n); else state.favs.add(n); saveFavs(); acctFav(n,state.favs.has(n)); if(typeof renderAlerts==="function") renderAlerts(); if(state.onlyFavs) refresh(); else syncHearts(); }
 
 function renderList(){
   const evs=filtered(), box=$("#list");
@@ -1325,7 +1363,7 @@ $("#radius").addEventListener("change",e=>{ state.km=+e.target.value; refresh();
 /* ===== Alertes « DJ favoris près de chez moi » (enregistrées sur l'appareil) ===== */
 const HOMEKEY="djmap.home", NOTKEY="djmap.notified";
 let HOME=(function(){try{const h=JSON.parse(localStorage.getItem(HOMEKEY)||"null");if(h&&CITIES.some(c=>c[0]===h.city))return h;}catch(e){}return null;})();
-function saveHome(){try{localStorage.setItem(HOMEKEY,JSON.stringify(HOME));}catch(e){}}
+function saveHome(){try{localStorage.setItem(HOMEKEY,JSON.stringify(HOME));}catch(e){} if(typeof acctProfile==="function") acctProfile();}
 function alertMatches(){
   if(!HOME||!state.favs.size) return [];
   const c=CITIES.find(x=>x[0]===HOME.city), today=new Date().toISOString().slice(0,10), lim=new Date(Date.now()+120*864e5).toISOString().slice(0,10);
@@ -1361,7 +1399,109 @@ $("#homecity").addEventListener("change",e=>{HOME=e.target.value?{city:e.target.
 $("#homekm").addEventListener("change",e=>{if(HOME){HOME.km=+e.target.value;saveHome();}renderAlerts();notifyAlerts();});
 $("#notifbtn").addEventListener("click",()=>{ if(!("Notification" in window)) return; Notification.requestPermission().then(()=>{renderAlerts();notifyAlerts();}); });
 if(navigator.serviceWorker && /^https?:/.test(location.protocol)) window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});
-function start(){ if(window.homeStats)homeStats(); buildFilters(); buildCity(); renderAlerts(); notifyAlerts(); buildPoints(); renderList(); new ResizeObserver(resize).observe(mapEl); resize(); }
+/* ===== Compte DJ Map (facultatif) : connexion par code e-mail, favoris enregistrés ===== */
+const SB_URL="https://wdnrtoayvucmzbipfdbs.supabase.co", SB_KEY="sb_publishable_lzVRp5MLPLwlwSnZkkZQUw_hGENP_IL", SESSKEY="djmap.sess";
+let SESS=(function(){try{return JSON.parse(localStorage.getItem(SESSKEY)||"null");}catch(e){return null;}})();
+function saveSess(x){SESS=x;try{if(x)localStorage.setItem(SESSKEY,JSON.stringify(x));else localStorage.removeItem(SESSKEY);}catch(e){} renderAccount();}
+function toSess(d){return {access_token:d.access_token,refresh_token:d.refresh_token,expires_at:d.expires_at||Math.floor(Date.now()/1000)+(d.expires_in||3600),email:(d.user&&d.user.email)||(SESS&&SESS.email)||""};}
+async function sbRaw(path,o){
+  o=o||{}; const h=Object.assign({apikey:SB_KEY,"Content-Type":"application/json"},o.headers||{});
+  if(o.auth&&SESS) h.Authorization="Bearer "+SESS.access_token;
+  const r=await fetch(SB_URL+path,{method:o.method||"GET",headers:h,body:o.body?JSON.stringify(o.body):undefined});
+  let j=null; try{j=await r.json();}catch(e){}
+  return {ok:r.ok,status:r.status,json:j};
+}
+async function refreshSess(){
+  if(!SESS||!SESS.refresh_token) return false;
+  try{const r=await sbRaw("/auth/v1/token?grant_type=refresh_token",{method:"POST",body:{refresh_token:SESS.refresh_token}});
+    if(r.ok&&r.json&&r.json.access_token){saveSess(toSess(r.json));return true;}
+    if(r.status===400||r.status===401||r.status===403){saveSess(null);}
+  }catch(e){} return false;
+}
+async function sb(path,o){
+  o=Object.assign({auth:true},o||{});
+  if(SESS&&SESS.expires_at<Date.now()/1000+60) await refreshSess();
+  let r=await sbRaw(path,o);
+  if(r.status===401&&SESS&&await refreshSess()) r=await sbRaw(path,o);
+  return r;
+}
+function accMsg(k,o){ $("#acc-msg").textContent=k?t(k,o):""; }
+function renderAccount(){
+  const b=$("#accbtn"); if(b) b.textContent=SESS?t("ac_btn_in"):t("ac_btn");
+  const out=$("#acc-out"), inn=$("#acc-in"); if(!out) return;
+  out.hidden=!!SESS; inn.hidden=!SESS;
+  if(SESS) $("#acc-who").textContent=t("ac_who",{e:SESS.email});
+}
+function accOpen(){ $("#acc").hidden=false; accMsg(""); renderAccount(); setTimeout(()=>{const f=SESS?null:$("#acc-s2").hidden?$("#acc-mail"):$("#acc-code"); if(f)f.focus();},50); }
+function accClose(){ $("#acc").hidden=true; }
+let ACC_MAIL="";
+$("#accbtn").addEventListener("click",accOpen);
+$("#accx").addEventListener("click",accClose);
+$("#acc").addEventListener("click",e=>{if(e.target.id==="acc")accClose();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#acc").hidden)accClose();});
+$("#acc-send").addEventListener("click",async()=>{
+  const m=$("#acc-mail").value.trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){accMsg("ac_mailbad");return;}
+  if(!navigator.onLine){accMsg("ac_off");return;}
+  accMsg(""); $("#acc-send").disabled=true;
+  try{const r=await sbRaw("/auth/v1/otp",{method:"POST",body:{email:m,create_user:true}});
+    if(r.ok){ACC_MAIL=m;$("#acc-s1").hidden=true;$("#acc-s2").hidden=false;$("#acc-sent").textContent=t("ac_sent",{e:m});$("#acc-code").focus();}
+    else accMsg("ac_err");
+  }catch(e){accMsg("ac_off");}
+  $("#acc-send").disabled=false;
+});
+$("#acc-ok").addEventListener("click",async()=>{
+  const c=$("#acc-code").value.replace(/\s/g,"");
+  if(!c){return;} accMsg(""); $("#acc-ok").disabled=true;
+  try{const r=await sbRaw("/auth/v1/verify",{method:"POST",body:{type:"email",email:ACC_MAIL,token:c}});
+    if(r.ok&&r.json&&r.json.access_token){
+      const x=toSess(r.json); x.email=ACC_MAIL; saveSess(x);
+      $("#acc-s1").hidden=false;$("#acc-s2").hidden=true;$("#acc-code").value="";
+      await syncAccount();
+    } else accMsg(r.status>=500?"ac_err":"ac_bad");
+  }catch(e){accMsg("ac_off");}
+  $("#acc-ok").disabled=false;
+});
+$("#acc-logout").addEventListener("click",async()=>{
+  try{await sbRaw("/auth/v1/logout",{method:"POST",auth:true,headers:{Authorization:"Bearer "+(SESS?SESS.access_token:"")}});}catch(e){}
+  saveSess(null); accClose();
+});
+$("#acc-del").addEventListener("click",async()=>{
+  if(!confirm(t("ac_delq"))) return;
+  try{const r=await sb("/rest/v1/rpc/delete_my_account",{method:"POST",body:{}}); if(r.ok){saveSess(null);accClose();} else accMsg("ac_err");}
+  catch(e){accMsg("ac_off");}
+});
+/* favoris : fusion appareil + compte, puis envoi de chaque changement */
+async function syncAccount(){
+  if(!SESS||!navigator.onLine) return;
+  try{
+    const r=await sb("/rest/v1/favorites?select=dj");
+    if(r.ok&&Array.isArray(r.json)){
+      const remote=new Set(r.json.map(x=>x.dj)), add=[...state.favs].filter(n=>!remote.has(n));
+      if(add.length) await sb("/rest/v1/favorites?on_conflict=user_id,dj",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=minimal"},body:add.map(n=>({dj:n}))});
+      remote.forEach(n=>{ if(DJ_BY_NAME.has(n)) state.favs.add(n); });
+      saveFavs(); syncHearts();
+    }
+    const p=await sb("/rest/v1/profiles?select=home_city,home_km&limit=1");
+    if(p.ok&&Array.isArray(p.json)){
+      const row=p.json[0];
+      if(!HOME&&row&&row.home_city&&CITIES.some(c=>c[0]===row.home_city)){HOME={city:row.home_city,km:row.home_km||300};try{localStorage.setItem(HOMEKEY,JSON.stringify(HOME));}catch(e){}}
+      else if(HOME) await acctProfile();
+    }
+    renderAlerts();
+  }catch(e){}
+}
+function acctFav(n,on){
+  if(!SESS) return;
+  const q=on?sb("/rest/v1/favorites?on_conflict=user_id,dj",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=minimal"},body:[{dj:n}]})
+            :sb("/rest/v1/favorites?dj=eq."+encodeURIComponent(n),{method:"DELETE"});
+  q.catch(()=>{});
+}
+async function acctProfile(){
+  if(!SESS||!HOME) return;
+  try{await sb("/rest/v1/profiles?on_conflict=user_id",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=minimal"},body:[{home_city:HOME.city,home_km:HOME.km,updated_at:new Date().toISOString()}]});}catch(e){}
+}
+function start(){ if(window.homeStats)homeStats(); renderAccount(); buildFilters(); buildCity(); renderAlerts(); notifyAlerts(); syncAccount(); buildPoints(); renderList(); new ResizeObserver(resize).observe(mapEl); resize(); }
 /* Si events.json existe à côté de la page (mis à jour chaque jour par le robot), on l'utilise. Sinon on garde les dates intégrées ci-dessus. */
 (function(){
   const today=new Date().toISOString().slice(0,10);
